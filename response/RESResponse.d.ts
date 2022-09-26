@@ -3,7 +3,7 @@ declare namespace RESResponse {
     type Response<T> = {
         code: number;
         message: string;
-        data: T;
+        data?: T;
     }
 
     type Paginate<T> = {

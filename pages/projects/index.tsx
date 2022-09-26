@@ -16,7 +16,7 @@ import Footer from "@/layout/footer";
 
 import styles from '@/styles/Projects.module.scss'
 
-const Projects: NextPage = (props: APIProjects.Props) => {
+const Projects: NextPage = (props: APIProjects.Projects) => {
 
     const router = useRouter();
 

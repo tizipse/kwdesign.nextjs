@@ -1,7 +1,10 @@
 declare namespace APIHome {
 
     type Props = {
-        banners?: APIBanner.Data[],
+        seo?: APIBasic.Seo,
+        banners?: RESBanner.Data[],
+        picture?: Record<string, string>,
+        setting?: Record<string, string>,
     }
 
     type Fadeout = {

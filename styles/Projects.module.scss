@@ -1,0 +1,110 @@
+.main {
+  padding-top: 80px;
+
+  .section {
+    max-width: 1920px;
+    margin: 0 auto;
+
+    .filter {
+      text-align: center;
+      margin: 50px 0 30px 0;
+
+      li {
+        display: inline-block;
+
+        a {
+          display: block;
+          padding: 5px 7px;
+          text-underline: none;
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+
+    .projects {
+
+      :global {
+
+        .show {
+
+          img {
+            opacity: 1 !important;
+            transition-delay: 0.5s;
+          }
+        }
+      }
+
+      .project {
+        width: 100%;
+        height: 39vh;
+        padding: 5px;
+
+        a {
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: white;
+
+          &:hover {
+            img {
+              transform: scale(1.2);
+            }
+          }
+
+          .tips {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 9;
+            padding: 20px;
+
+            span {
+            }
+
+            h3 {
+              margin: 0;
+            }
+          }
+
+          .thumb {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+            img {
+              opacity: 0;
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              box-sizing: inherit;
+              transition: all 1.2s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+
+    .paginate {
+      margin: 30px 10px 50px 0;
+      float: right;
+      clear: both;
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    .empty {
+      margin: 50px;
+    }
+  }
+}

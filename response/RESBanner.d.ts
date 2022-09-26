@@ -1,4 +1,4 @@
-declare namespace APIBanner {
+declare namespace RESBanner {
 
     type Data = {
         id?: number;

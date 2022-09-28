@@ -66,7 +66,7 @@ const Home: NextPage = (props: APIHome.Props) => {
                                     <Link href='/projects'><a>PROJECTS</a></Link>
                                 </li>
                                 <li>
-                                    <Link href='/about'><a>ABOUT</a></Link>
+                                    <Link href='/About'><a>ABOUT</a></Link>
                                 </li>
                                 <li>
                                     <Link href='/contact'><a>CONTACT</a></Link>
@@ -128,10 +128,10 @@ const Home: NextPage = (props: APIHome.Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
-    const category: AxiosResponse<RESResponse.Response<RESCategory.Data>> = await doCategory('HOME');
-    const banners: AxiosResponse<RESResponse.Response<RESBanner.Data[]>> = await doBanners();
-    const picture: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doPicture();
-    const setting: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doSetting();
+    const category = await doCategory('HOME');
+    const banners = await doBanners();
+    const picture = await doPicture();
+    const setting = await doSetting();
 
     let seo: APIBasic.Seo = {
         title: category.data?.data?.title,

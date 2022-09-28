@@ -13,6 +13,7 @@ declare namespace APIProjects {
         setting?: Record<string, string>,
         seo?: APIBasic.Seo,
         project?: RESProject.Project,
+        relates?: RESProject.Related[],
     }
 
 }

@@ -28,7 +28,7 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
             const items = ele.getElementsByClassName('items') as HTMLCollectionOf<HTMLElement>
 
             for (const key in items) {
-                if (items[key].offsetTop > 0 && items[key].offsetTop <= window.innerHeight + window.pageYOffset) {
+                if (items[key].offsetTop > 0 && items[key].offsetTop <= window.innerHeight + window.scrollY) {
                     items[key].classList.add('show')
                 } else {
                     items[key].classList?.remove('show')
@@ -46,28 +46,15 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
         onAnimation()
 
         window.addEventListener('scroll', onScroll)
-
-        return () => {
-            window.removeEventListener('scroll', onScroll)
-        }
+        return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
 
-    const RenderPaginate = (page?: number, type?: 'page' | 'more' | 'prev' | 'next', e?: any) => {
-
-        if (!page) {
-            page = undefined
-        }
-
-        return (
-            <Link href={{
-                pathname: router.pathname,
-                query: {...router.query, page}
-            }}>
-                {e}
-            </Link>
-        )
-    }
+    const RenderPaginate = (page?: number, type?: 'page' | 'more' | 'prev' | 'next', element?: any) => (
+        !page ?
+            <Link href={{pathname: router.pathname, query: {...router.query, page}}}>{element}</Link>
+            : element
+    )
 
     return (
         <>
@@ -76,9 +63,8 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
                 <meta name="keywords" content={props.seo?.keyword}/>
                 <meta name="description" content={props.seo?.description}/>
             </Head>
-
+            <Header picture={props.picture} setting={props.setting}/>
             <main className={styles.main}>
-                <Header picture={props.picture} setting={props.setting}/>
                 <section id='section' className={styles.section}>
                     <ul className={styles.filter}>
                         <li>
@@ -116,6 +102,7 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
                                                                 <h3>{item.name}</h3>
                                                             }
                                                         </div>
+                                                        <div className={styles.mark} />
                                                         <div className={styles.thumb}>
                                                             <img src={item.picture} alt={item.name}/>
                                                         </div>
@@ -148,15 +135,15 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     const query = {
         classification: c,
-        size: 12,
+        size: 18,
         page,
     }
 
-    const category: AxiosResponse<RESResponse.Response<RESCategory.Data>> = await doCategory('PROJECTS');
-    const classifications: AxiosResponse<RESResponse.Response<RESClassification.Data[]>> = await doClassifications();
-    const projects: AxiosResponse<RESResponse.Response<RESProject.Projects[]>> = await doProjects(query);
-    const picture: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doPicture();
-    const setting: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doSetting();
+    const category = await doCategory('PROJECTS');
+    const classifications = await doClassifications();
+    const projects = await doProjects(query);
+    const picture = await doPicture();
+    const setting = await doSetting();
 
 
     let seo: APIBasic.Seo = {
@@ -165,17 +152,20 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         description: category.data?.data?.description,
     }
 
-    if (c) {
+    if (c && classifications?.data?.data) {
 
         const classification = classifications.data?.data.find(item => item.id == c)
 
-        if (classification) {
-
-            seo = {
-                title: classification.title,
-                keyword: classification.keyword,
-                description: classification.description,
+        if (!classification) {
+            return {
+                notFound: true,
             }
+        }
+
+        seo = {
+            title: classification.title,
+            keyword: classification.keyword,
+            description: classification.description,
         }
     }
 

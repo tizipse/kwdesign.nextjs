@@ -1,20 +1,35 @@
+@import "config";
+
 .main {
-  margin-bottom: 50px;
+  padding-top: 150px;
+  max-width: 500px;
+  margin: 0 auto 100px;
+
+  @media (max-width: $mobileWidth) {
+    padding: 100px 15px 0;
+  }
+
+  .company {
+    margin-bottom: 50px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
 
   .picture {
-    height: 75vh;
-    position: relative;
-    overflow: hidden;
+    margin-bottom: 50px;
 
     img {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      box-sizing: inherit;
-      animation: image-pulse 30s ease-in-out infinite alternate
     }
   }
 

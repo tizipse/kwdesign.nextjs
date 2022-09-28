@@ -31,41 +31,36 @@ const Header = (props: APIHeader.Props) => {
     }, [visible.menu])
 
     useEffect(() => {
+
+        setVisible({...visible, menu: false})
+
         window.addEventListener('resize', onResize)
-        return () => {
-            window.removeEventListener('resize', onResize)
-        }
+        return () => window.removeEventListener('resize', onResize)
     }, [])
 
     return (
         <>
             <header className={styles.header}>
-                <Grid.Row className={styles.head}>
-                    <Grid.Col flex='clamp(140px, 14vw, 240px)' className={styles.logo}>
+                <div className={styles.head}>
+                    <div className={styles.logo}>
                         <Link href='/'>
                             <a>
-                                {
-                                    props.theme == 'light' ?
-                                        <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/> :
-                                        <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
-                                }
+                                <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
                             </a>
                         </Link>
-                    </Grid.Col>
-                    <Grid.Col flex='auto'>
-                        <ul className={`${styles.pc} ${props.theme == 'light' ? styles.light : ''}`}>
-                            <li>
-                                <Link href='/projects'><a>PROJECTS</a></Link>
-                            </li>
-                            <li>
-                                <Link href='/about'><a>ABOUT</a></Link>
-                            </li>
-                            <li>
-                                <Link href='/contact'><a>CONTACT</a></Link>
-                            </li>
-                        </ul>
-                    </Grid.Col>
-                </Grid.Row>
+                    </div>
+                    <ul className={`${styles.pc} ${props.theme == 'light' ? styles.light : ''}`}>
+                        <li>
+                            <Link href='/projects'><a>PROJECTS</a></Link>
+                        </li>
+                        <li>
+                            <Link href='/about'><a>ABOUT</a></Link>
+                        </li>
+                        <li>
+                            <Link href='/contact'><a>CONTACT</a></Link>
+                        </li>
+                    </ul>
+                </div>
             </header>
             <div className={`${styles.toggle} ${visible.menu ? styles.action : ''}`}
                  onClick={() => setVisible({...visible, menu: !visible.menu})}>

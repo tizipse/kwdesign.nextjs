@@ -1,5 +1,7 @@
+@import "config";
+
 .footer {
-  background: #323232;
+  background: $primaryColor;
   padding: 40px 0;
 
   a {

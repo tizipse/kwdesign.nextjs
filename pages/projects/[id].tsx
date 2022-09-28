@@ -3,16 +3,101 @@ import {AxiosResponse} from "axios";
 import {doPicture} from "@/services/picture";
 import {doSetting} from "@/services/setting";
 import Head from "next/head";
-import {doProject} from "@/services/project";
+import {doProject, doProjectByRelated} from "@/services/project";
 import Header from "@/layout/header";
 import dayjs from "dayjs";
 import Constants from "@/util/Constants";
 import {Grid, Image} from "@arco-design/web-react";
 import Footer from "@/layout/footer";
+import {useEffect} from "react";
+import Link from "next/link";
+
 
 import styles from '@/styles/Project.module.scss'
 
 const Project = (props: APIProjects.Project) => {
+
+    const onContainer = () => {
+
+        const container = document.getElementById('container')
+
+        if (container) {
+            for (let i = 0; i < container.children.length; i += 1) {
+                const item = container.children.item(i)
+                if (item) {
+                    const id = item.getAttribute('id')
+                    // @ts-ignore
+                    const ot = item?.offsetTop;
+                    if (ot > 0 && ot <= window.innerHeight + window.scrollY && id != 'html') {
+                        item.classList.add('show')
+                    } else {
+                        item.classList?.remove('show')
+                    }
+                }
+            }
+        }
+    }
+
+    const onHtml = () => {
+
+        const html = document.getElementById('html')
+
+        if (html) {
+            for (let i = 0; i < html.children.length; i += 1) {
+                const item = html.children.item(i)
+                if (item) {
+                    // @ts-ignore
+                    const ot = item?.offsetTop;
+                    if (ot + html.offsetTop > 0 && ot + html.offsetTop <= window.innerHeight + window.scrollY) {
+                        item.classList.add('show')
+                    } else {
+                        item.classList?.remove('show')
+                    }
+                }
+            }
+        }
+    }
+
+    const onRelated = () => {
+
+        const related = document.getElementById('related')
+
+        if (related) {
+            for (let i = 0; i < related.children.length; i += 1) {
+                const item = related.children.item(i)
+                if (item) {
+                    // @ts-ignore
+                    const ot = item?.offsetTop;
+                    if (ot > 0 && ot <= window.innerHeight + window.scrollY) {
+                        item.classList.add('show')
+                    } else {
+                        item.classList?.remove('show')
+                    }
+                }
+            }
+        }
+    }
+
+    const onAnimation = () => {
+
+        onContainer()
+
+        onHtml()
+
+        onRelated()
+    }
+
+    const onScroll = (e: any) => {
+        onAnimation();
+    }
+
+    useEffect(() => {
+
+        onAnimation()
+
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
 
     return (
         <>
@@ -21,12 +106,12 @@ const Project = (props: APIProjects.Project) => {
                 <meta name="keywords" content={props.seo?.keyword}/>
                 <meta name="description" content={props.seo?.description}/>
             </Head>
+            <Header theme={props.project?.theme} picture={props.picture} setting={props.setting}/>
             <main className={styles.main}>
-                <Header theme={props.project?.theme} picture={props.picture} setting={props.setting}/>
                 <div className={styles.picture}>
                     <img src={props.project?.picture} alt={props.project?.name}/>
                 </div>
-                <div className={styles.container}>
+                <div id='container' className={styles.container}>
                     <h3>{props.project?.name}</h3>
                     {
                         props.project?.dated_at &&
@@ -38,7 +123,7 @@ const Project = (props: APIProjects.Project) => {
                     }
                     {
                         props.project?.html &&
-                        <div className={styles.html} dangerouslySetInnerHTML={{__html: props.project.html}}/>
+                        <div id='html' className={styles.html} dangerouslySetInnerHTML={{__html: props.project.html}}/>
                     }
                 </div>
                 {
@@ -57,6 +142,40 @@ const Project = (props: APIProjects.Project) => {
                         </Image.PreviewGroup>
                     </div>
                 }
+                {
+                    props.relates && props.relates.length > 0 &&
+                    <div id='related' className={styles.related}>
+                        <h5>RELATED PROJECTS</h5>
+                        <div className={styles.relates}>
+                            <Grid.Row>
+                                {
+                                    props.relates.map(item => (
+                                        <Grid.Col key={item.id} sm={12} xs={12} md={6}>
+                                            <Link href={`/projects/${item.id}`}>
+                                                <a>
+                                                    <div className={styles.tips}>
+                                                        {
+                                                            item.dated_at &&
+                                                            <span>{dayjs(item.dated_at).format('YYYY')}</span>
+                                                        }
+                                                        {
+                                                            item.name &&
+                                                            <h3>{item.name}</h3>
+                                                        }
+                                                    </div>
+                                                    <div className={styles.mark}/>
+                                                    <div className={styles.thumb}>
+                                                        <img src={item.picture} alt={item.name}/>
+                                                    </div>
+                                                </a>
+                                            </Link>
+                                        </Grid.Col>
+                                    ))
+                                }
+                            </Grid.Row>
+                        </div>
+                    </div>
+                }
             </main>
             <Footer picture={props.picture} setting={props.setting}/>
         </>
@@ -67,7 +186,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     const {id} = context.query
 
-    const project: AxiosResponse<RESResponse.Response<RESProject.Project>> = await doProject(id);
+    const project = await doProject(id);
 
     if (project.data.code != Constants.Success) {
         return {
@@ -75,8 +194,9 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         }
     }
 
-    const picture: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doPicture();
-    const setting: AxiosResponse<RESResponse.Response<Record<string, string>>> = await doSetting();
+    const picture = await doPicture();
+    const setting = await doSetting();
+    const relates = await doProjectByRelated(project.data?.data?.classification)
 
     let seo: APIBasic.Seo = {
         title: project.data?.data?.title,
@@ -84,27 +204,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         description: project.data?.data?.description,
     }
 
-    // if (c) {
-    //
-    //     const classification = classifications.data?.data.find(item => item.id == c)
-    //
-    //     if (classification) {
-    //
-    //         seo = {
-    //             title: classification.title,
-    //             keyword: classification.keyword,
-    //             description: classification.description,
-    //         }
-    //     }
-    // }
-
     return {
         props: {
             seo,
-            // classifications: classifications?.data?.data,
             picture: picture?.data?.data,
             setting: setting?.data?.data,
             project: project.data.data,
+            relates: relates.data.data,
         },
     }
 }

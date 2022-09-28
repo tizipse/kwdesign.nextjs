@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 export const doPicture = () => {
-    return axios.get(`${process.env.REQUEST_URL}/api/client/web/picture`)
+    return axios.get<any, AxiosResponse<RESResponse.Response<Record<string, string>>>>(`${process.env.REQUEST_URL}/api/client/web/picture`)
 }

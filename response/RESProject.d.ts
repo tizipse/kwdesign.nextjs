@@ -10,6 +10,7 @@ declare namespace RESProject {
 
     type Project = {
         id?: string;
+        classification?: string;
         theme?: string;
         name?: string;
         address?: string;
@@ -19,6 +20,14 @@ declare namespace RESProject {
         keyword?: string;
         description?: string;
         html?: string;
+        dated_at?: string;
+    }
+
+    type Related = {
+        id?: string;
+        name?: string;
+        address?: string;
+        picture?: string;
         dated_at?: string;
     }
 

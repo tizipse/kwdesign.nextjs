@@ -10,10 +10,13 @@ import {Grid, Image} from "@arco-design/web-react";
 import Footer from "@/layout/footer";
 import {useEffect} from "react";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 import styles from '@/styles/Project.module.scss'
 
 const Project = (props: APIProjects.Project) => {
+
+    const router = useRouter();
 
     const onContainer = () => {
 
@@ -88,9 +91,10 @@ const Project = (props: APIProjects.Project) => {
     }
 
     useEffect(() => {
-
         onAnimation()
+    }, [router.query])
 
+    useEffect(() => {
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
@@ -192,12 +196,20 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     const picture = await doPicture();
     const setting = await doSetting();
-    const relates = await doProjectByRelated(project.data?.data?.classification)
+    const relates = await doProjectByRelated(project.data?.data?.classification, project.data?.data?.id)
 
     let seo: APIBasic.Seo = {
         title: project.data?.data?.title,
         keyword: project.data?.data?.keyword,
         description: project.data?.data?.description,
+    }
+
+    if (setting.data?.data?.company_zh) {
+        if (seo.title) {
+            seo.title += " - " + setting.data?.data?.company_zh
+        } else {
+            seo.title = setting.data?.data?.company_zh
+        }
     }
 
     return {

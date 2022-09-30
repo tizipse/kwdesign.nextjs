@@ -41,13 +41,13 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
     }
 
     useEffect(() => {
-
         onAnimation()
+    }, [router.query])
 
+    useEffect(() => {
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
-
 
     const RenderPaginate = (page?: number, type?: 'page' | 'more' | 'prev' | 'next', element?: any) => (
         !page ?
@@ -165,6 +165,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
             title: classification.title,
             keyword: classification.keyword,
             description: classification.description,
+        }
+    }
+
+    if (setting.data?.data?.company_zh) {
+        if (seo.title) {
+            seo.title += " - " + setting.data?.data?.company_zh
+        } else {
+            seo.title = setting.data?.data?.company_zh
         }
     }
 

@@ -142,6 +142,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         description: category.data?.data?.description,
     }
 
+    if (setting.data?.data?.company_zh) {
+        if (seo.title) {
+            seo.title += " - " + setting.data?.data?.company_zh
+        } else {
+            seo.title = setting.data?.data?.company_zh
+        }
+    }
+
     return {
         props: {
             seo,

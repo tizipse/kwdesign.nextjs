@@ -7,10 +7,13 @@ import Constants from "@/util/Constants";
 import Footer from "@/layout/footer";
 import {useEffect} from "react";
 import {doCategory} from "@/services/category";
+import {useRouter} from "next/router";
 
 import styles from '@/styles/About.module.scss'
 
 const About = (props: APIAbout.Props) => {
+
+    const router = useRouter();
 
     const onLoopByScrollFadeIn = (element: HTMLElement | Element | null) => {
 
@@ -62,10 +65,11 @@ const About = (props: APIAbout.Props) => {
     }
 
     useEffect(() => {
-
         onLoopByScrollFadeIn(null)
         onLoopByIsVisible(null)
+    }, [router.query])
 
+    useEffect(() => {
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
@@ -123,6 +127,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         title: category.data?.data?.title,
         keyword: category.data?.data?.keyword,
         description: category.data?.data?.description,
+    }
+
+    if (setting.data?.data?.company_zh) {
+        if (seo.title) {
+            seo.title += " - " + setting.data?.data?.company_zh
+        } else {
+            seo.title = setting.data?.data?.company_zh
+        }
     }
 
     return {

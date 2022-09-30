@@ -1,5 +1,4 @@
 import {GetServerSideProps} from "next";
-import {AxiosResponse} from "axios";
 import {doPicture} from "@/services/picture";
 import {doSetting} from "@/services/setting";
 import Head from "next/head";
@@ -11,7 +10,6 @@ import {Grid, Image} from "@arco-design/web-react";
 import Footer from "@/layout/footer";
 import {useEffect} from "react";
 import Link from "next/link";
-
 
 import styles from '@/styles/Project.module.scss'
 
@@ -26,9 +24,7 @@ const Project = (props: APIProjects.Project) => {
                 const item = container.children.item(i)
                 if (item) {
                     const id = item.getAttribute('id')
-                    // @ts-ignore
-                    const ot = item?.offsetTop;
-                    if (ot > 0 && ot <= window.innerHeight + window.scrollY && id != 'html') {
+                    if (item.getBoundingClientRect().top <= window.innerHeight + window.scrollY && id != 'html') {
                         item.classList.add('show')
                     } else {
                         item.classList?.remove('show')
@@ -46,9 +42,7 @@ const Project = (props: APIProjects.Project) => {
             for (let i = 0; i < html.children.length; i += 1) {
                 const item = html.children.item(i)
                 if (item) {
-                    // @ts-ignore
-                    const ot = item?.offsetTop;
-                    if (ot + html.offsetTop > 0 && ot + html.offsetTop <= window.innerHeight + window.scrollY) {
+                    if (item.getBoundingClientRect().top <= window.innerHeight + window.scrollY) {
                         item.classList.add('show')
                     } else {
                         item.classList?.remove('show')
@@ -66,9 +60,11 @@ const Project = (props: APIProjects.Project) => {
             for (let i = 0; i < related.children.length; i += 1) {
                 const item = related.children.item(i)
                 if (item) {
+
                     // @ts-ignore
-                    const ot = item?.offsetTop;
-                    if (ot > 0 && ot <= window.innerHeight + window.scrollY) {
+                    const ot = item.offsetTop
+
+                    if (ot <= window.innerHeight + window.scrollY) {
                         item.classList.add('show')
                     } else {
                         item.classList?.remove('show')

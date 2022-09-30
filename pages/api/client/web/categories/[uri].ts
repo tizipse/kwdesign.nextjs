@@ -5,6 +5,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
 
     const {uri}: { uri?: string } = req.query;
 
+    let picture = 'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg';
+
+    if (uri == 'HOME') {
+        picture = 'https://static.uper.io/kwd/picture/1574020736241111040.png';
+    }
+
     res
         .status(200)
         .json({
@@ -13,7 +19,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
             data: {
                 uri,
                 name: `${uri} name`,
-                picture: 'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
+                picture: picture,
                 title: `${uri} title`,
                 keyword: `${uri} keyword`,
                 description: `${uri} description`,

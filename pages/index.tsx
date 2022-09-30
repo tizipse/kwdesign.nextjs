@@ -7,13 +7,12 @@ import {doPicture} from "@/services/picture";
 import {doSetting} from "@/services/setting";
 import {doCategory} from "@/services/category";
 import Link from "next/link";
-import {AxiosResponse} from "axios";
 
 import styles from '@/styles/Home.module.scss'
 
 const Home: NextPage = (props: APIHome.Props) => {
 
-    const [theme, setTheme] = useState<string | undefined>('')
+    const [theme, setTheme] = useState<string | undefined>()
     const [display, setDisplay] = useState<APIHome.Display>({})
     const [fadeout, setFadeout] = useState<APIHome.Fadeout>({})
 
@@ -45,9 +44,13 @@ const Home: NextPage = (props: APIHome.Props) => {
             </Head>
 
             <main className={styles.main}>
-                <div className={`${styles.mask} ${fadeout.mark ? styles.fadeout : ''}`} style={{display: display.mark}}>
-                    <img src={props.picture?.logo_init} alt={props.setting?.company_zh}/>
-                </div>
+                {
+                    props.category?.picture &&
+                    <div className={`${styles.mask} ${fadeout.mark ? styles.fadeout : ''}`}
+                         style={{display: display.mark}}>
+                        <img src={props.category?.picture} alt={props.setting?.company_zh}/>
+                    </div>
+                }
                 <header className={styles.header}>
                     <Grid.Row className={styles.head}>
                         <Grid.Col flex='clamp(140px, 14vw, 240px)' className={styles.logo}>
@@ -66,7 +69,7 @@ const Home: NextPage = (props: APIHome.Props) => {
                                     <Link href='/projects'><a>PROJECTS</a></Link>
                                 </li>
                                 <li>
-                                    <Link href='/About'><a>ABOUT</a></Link>
+                                    <Link href='/about'><a>ABOUT</a></Link>
                                 </li>
                                 <li>
                                     <Link href='/contact'><a>CONTACT</a></Link>
@@ -143,6 +146,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         props: {
             seo,
             banners: banners?.data?.data,
+            category: category?.data?.data,
             picture: picture?.data?.data,
             setting: setting?.data?.data,
         },

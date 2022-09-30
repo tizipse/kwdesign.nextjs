@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import type {GetServerSideProps, NextPage} from 'next'
 import {useRouter} from "next/router";
 import Head from 'next/head'
@@ -8,7 +8,6 @@ import {doClassifications} from "@/services/classification";
 import {doCategory} from "@/services/category";
 import {doProjects} from "@/services/project";
 import Link from "next/link";
-import {AxiosResponse} from "axios";
 import Header from "@/layout/header";
 import {Grid, Pagination, Result} from "@arco-design/web-react";
 import dayjs from "dayjs";
@@ -28,7 +27,7 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
             const items = ele.getElementsByClassName('items') as HTMLCollectionOf<HTMLElement>
 
             for (const key in items) {
-                if (items[key].offsetTop > 0 && items[key].offsetTop <= window.innerHeight + window.scrollY) {
+                if (items[key].offsetTop <= window.innerHeight + window.scrollY) {
                     items[key].classList.add('show')
                 } else {
                     items[key].classList?.remove('show')
@@ -102,7 +101,7 @@ const Projects: NextPage = (props: APIProjects.Projects) => {
                                                                 <h3>{item.name}</h3>
                                                             }
                                                         </div>
-                                                        <div className={styles.mark} />
+                                                        <div className={styles.mark}/>
                                                         <div className={styles.thumb}>
                                                             <img src={item.picture} alt={item.name}/>
                                                         </div>

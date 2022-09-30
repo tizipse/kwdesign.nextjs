@@ -13,7 +13,7 @@ const Footer = (props: APIFooter.Props) => {
                         </Link>
                     </li>
                     <li>
-                        <Link href='/About'>
+                        <Link href='/about'>
                             <a>ABOUT</a>
                         </Link>
                     </li>

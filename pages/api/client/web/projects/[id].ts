@@ -28,7 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 name: '中国共产主义青年团建团 100 周年',
                 address: '杭州富阳区',
                 picture: 'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
-                title: 'title',
+                title: '',
                 keyword: 'keyword',
                 description: 'description',
                 html: '<h3>团队</h3><p>KWD，2015 年成立于杭州，工作室服务于商业品牌设计、品牌策划、品牌推广年度服务设计 CIS、SI（品牌形象空间）、导视系统、创意产品、文化艺术、空间设计、商业摄影、景观规划、展览展示于一体的文化创意公司。</p><p></p><h3>荣誉</h3><p>中国美术学院白金创意奖作品入选奖</p><p>中国设计师作品年鉴银奖</p><p></p>',

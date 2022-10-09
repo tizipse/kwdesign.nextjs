@@ -40,11 +40,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const picture = await doPicture();
     const setting = await doSetting();
 
-
     let seo: APIBasic.Seo = {
         title: category.data?.data?.title,
         keyword: category.data?.data?.keyword,
         description: category.data?.data?.description,
+    }
+
+    if (!seo.title) {
+        seo.title = category.data?.data?.name
     }
 
     if (c && classifications?.data?.data) {
@@ -61,6 +64,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
             title: classification.title,
             keyword: classification.keyword,
             description: classification.description,
+        }
+
+        if (!seo.title) {
+            seo.title = classification.name
         }
     }
 

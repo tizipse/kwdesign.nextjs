@@ -3,7 +3,7 @@ import {Drawer, Grid} from "@arco-design/web-react";
 import {IconClose, IconMenu} from "@arco-design/web-react/icon";
 import Link from "next/link";
 
-import styles from "@/styles/Header.module.scss";
+import styles from "@/styles/header.module.scss";
 
 const Header = (props: APIHeader.Props) => {
 

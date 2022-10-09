@@ -5,7 +5,7 @@ import {Grid, Pagination, Result} from "@arco-design/web-react";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 
-import styles from '@/styles/Projects.module.scss';
+import styles from '@/styles/projects.module.scss';
 
 const Header = dynamic(() => import('@/layout/header'));
 const Footer = dynamic(() => import('@/layout/footer'));

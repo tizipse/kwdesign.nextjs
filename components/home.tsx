@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Carousel, Grid} from '@arco-design/web-react';
 import Link from "next/link";
 
-import styles from '@/styles/Home.module.scss'
+import styles from '@/styles/home.module.scss'
 
 const Home = (props: APIHome.Props) => {
 

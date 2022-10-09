@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 
-import styles from '@/styles/About.module.scss'
+import styles from '@/styles/about.module.scss'
 
 const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))

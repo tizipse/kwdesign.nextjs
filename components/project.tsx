@@ -5,7 +5,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 
-import styles from '@/styles/Project.module.scss'
+import styles from '@/styles/project.module.scss'
 
 const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))

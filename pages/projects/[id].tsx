@@ -45,6 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         description: project.data?.data?.description,
     }
 
+    if (!seo.title) {
+        seo.title = project.data?.data?.name
+    }
+
     if (setting.data?.data?.company_zh) {
         if (seo.title) {
             seo.title += " - " + setting.data?.data?.company_zh

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Drawer, Grid} from "@arco-design/web-react";
+import {Drawer} from "@arco-design/web-react";
 import {IconClose, IconMenu} from "@arco-design/web-react/icon";
 import Link from "next/link";
 
@@ -11,16 +11,14 @@ const Header = (props: APIHeader.Props) => {
 
     const onResize = () => {
         if (visible.menu) {
-            setVisible({...visible, menu: false})
+            setVisible(v => ({...v, menu: false}))
         }
     }
 
     useEffect(() => {
 
         if (visible.menu !== undefined) {
-
             const body = document.body
-
             if (visible.menu) {
                 body.classList.add('no-scroll')
             } else {
@@ -31,12 +29,9 @@ const Header = (props: APIHeader.Props) => {
     }, [visible.menu])
 
     useEffect(() => {
-
-        setVisible({...visible, menu: false})
-
         window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
-    }, [])
+    }, [visible.menu])
 
     return (
         <>
@@ -63,20 +58,23 @@ const Header = (props: APIHeader.Props) => {
                 </div>
             </header>
             <div className={`${styles.toggle} ${visible.menu ? styles.action : ''}`}
-                 onClick={() => setVisible({...visible, menu: !visible.menu})}>
+                 onClick={() => setVisible({menu: !visible.menu})}>
                 {visible.menu ? <IconClose/> : <IconMenu/>}
             </div>
             <Drawer visible={visible.menu} width='100%' footer={null} className={styles.navigation}
                     closable={false}
                     onCancel={() => setVisible({...visible, menu: false})}
                     headerStyle={{display: "none"}} wrapClassName={styles.mobile}>
-                <div className={styles.logo}>
-                    <Link href='/'>
-                        <a>
-                            <img src={props.picture?.logo_init} alt={props.setting?.company_zh}/>
-                        </a>
-                    </Link>
-                </div>
+                {
+                    props.picture?.logo_mobile &&
+                    <div className={styles.logo}>
+                        <Link href='/'>
+                            <a>
+                                <img src={props.picture?.logo_mobile} alt={props.setting?.company_zh}/>
+                            </a>
+                        </Link>
+                    </div>
+                }
                 <div className={styles.nav}>
                     <ul>
                         <li>

@@ -4,7 +4,7 @@ const path = require('path');
 const {withSuperjson} = require('next-superjson');
 
 module.exports = withSuperjson()({
-    reactStrictMode: true,
+    reactStrictMode: false,
     poweredByHeader: false,
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')]

@@ -67,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         }
 
         if (!seo.title) {
-            seo.title = [classification.english, classification.chinese].filter(item => item).join(' - ')
+            seo.title = [classification.name, classification.alias].filter(item => item).join(' - ')
         }
     }
 

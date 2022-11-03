@@ -13,11 +13,31 @@
         display: inline-block;
 
         a {
+          width: 100px;
+          text-align: center;
           display: block;
-          padding: 5px 7px;
           text-underline: none;
           text-decoration: none;
           color: black;
+
+          .name {
+            display: inline;
+          }
+
+          .alias {
+            display: none;
+          }
+
+          &:hover {
+
+            .name {
+              display: none;
+            }
+
+            .alias {
+              display: inline;
+            }
+          }
         }
       }
     }
@@ -121,6 +141,8 @@
       clear: both;
 
       a {
+        width: 100%;
+        display: inline-block;
         text-decoration: none;
         color: black;
       }

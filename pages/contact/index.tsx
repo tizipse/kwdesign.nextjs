@@ -9,7 +9,7 @@ import {doContacts} from "@/services/contact";
 
 const ContactComponent = dynamic(() => import('@/components/contact'))
 
-const Contact = (props: APIContact.Props) => {
+export default function Contact(props: APIContact.Props) {
 
     return (
         <>
@@ -66,5 +66,3 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         },
     }
 }
-
-export default Contact;

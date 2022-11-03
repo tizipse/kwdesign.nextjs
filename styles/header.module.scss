@@ -7,6 +7,7 @@
     max-width: 1920px;
     margin: 0 auto;
     display: flex;
+    position: relative;
 
     .logo {
       width: clamp(140px, 14vw, 240px);
@@ -20,6 +21,7 @@
     }
 
     .pc {
+      padding-top: 15px;
       text-align: right;
       list-style: none;
       margin: 2vw 2vw 2vw 0;
@@ -43,11 +45,32 @@
         line-height: 1.3em;
 
         a {
+          text-align: center;
+          width: 100px;
+          padding: 10px 0;
           display: block;
-          padding: 6px 10px;
           text-underline: none;
           text-decoration: none;
           color: #000000;
+
+          .name {
+            display: inline;
+          }
+
+          .alias {
+            display: none;
+          }
+
+          &:hover {
+
+            .name {
+              display: none;
+            }
+
+            .alias {
+              display: inline;
+            }
+          }
         }
       }
     }

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {ReactNode, useEffect} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {Grid, Pagination, Result} from "@arco-design/web-react";
@@ -44,11 +44,37 @@ const Projects = (props: APIProjects.Projects) => {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    const RenderPaginate = (page?: number, type?: 'page' | 'more' | 'prev' | 'next', element?: any) => (
-        !page ?
-            <Link href={{pathname: router.pathname, query: {...router.query, page}}}>{element}</Link>
-            : element
-    )
+    const RenderPaginate = (p?: number, type?: 'page' | 'more' | 'prev' | 'next', element?: ReactNode) => {
+
+        let {page} = router.query
+
+        const current = (page && typeof page == "string") ? parseInt(page, 10) : 1
+        const total = (props.projects?.total && props.projects.size) ? Math.ceil(props.projects.total / props.projects.size) : 1;
+
+        let ele: ReactNode = element
+
+        if (type == 'page' && current != p) {
+            ele = (
+                <Link href={{pathname: router.pathname, query: {...router.query, page: p}}}>
+                    <a>{element}</a>
+                </Link>
+            )
+        } else if (type == 'prev' && current > 1) {
+            ele = (
+                <Link href={{pathname: router.pathname, query: {...router.query, page: (current - 1)}}}>
+                    <a>{element}</a>
+                </Link>
+            )
+        } else if (type == 'next' && current < total) {
+            ele = (
+                <Link href={{pathname: router.pathname, query: {...router.query, page: (current + 1)}}}>
+                    <a>{element}</a>
+                </Link>
+            )
+        }
+
+        return ele
+    }
 
     return (
         <>
@@ -58,14 +84,20 @@ const Projects = (props: APIProjects.Projects) => {
                     <ul className={styles.filter}>
                         <li>
                             <Link href='/projects'>
-                                <a>ALL</a>
+                                <a>
+                                    <span className={styles.name}>ALL</span>
+                                    <span className={styles.alias}>全部</span>
+                                </a>
                             </Link>
                         </li>
                         {
                             props.classifications?.map(item => (
                                 <li key={item.id}>
                                     <Link href={`/projects?c=${item.id}`}>
-                                        <a>{item.name}</a>
+                                        <a>
+                                            <span className={styles.name}>{item.name}</span>
+                                            <span className={styles.alias}>{item.alias}</span>
+                                        </a>
                                     </Link>
                                 </li>
                             ))

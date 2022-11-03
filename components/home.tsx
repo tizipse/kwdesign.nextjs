@@ -54,20 +54,35 @@ const Home = (props: APIHome.Props) => {
                         <Grid.Col flex='auto'>
                             <ul className={`${styles.nav} ${theme}`}>
                                 <li>
-                                    <Link href='/projects'><a>PROJECTS</a></Link>
+                                    <Link href='/projects'>
+                                        <a>
+                                            <span className={styles.name}>PROJECTS</span>
+                                            <span className={styles.alias}>项目案例</span>
+                                        </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <Link href='/about'><a>ABOUT</a></Link>
+                                    <Link href='/about'>
+                                        <a>
+                                            <span className={styles.name}>ABOUT</span>
+                                            <span className={styles.alias}>关于我们</span>
+                                        </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <Link href='/contact'><a>CONTACT</a></Link>
+                                    <Link href='/contact'>
+                                        <a>
+                                            <span className={styles.name}>CONTACT</span>
+                                            <span className={styles.alias}>联系我们</span>
+                                        </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </Grid.Col>
                     </Grid.Row>
                 </header>
                 <div className={styles.banners}>
-                    <Carousel autoPlay={{interval: 5000, hoverToPause: false}} animation='fade' showArrow='never'
+                    <Carousel autoPlay={{interval: 5000, hoverToPause: false}} showArrow='never'
                               indicatorType='never'
                               onChange={onCarousel}
                               className={styles.carousel}>

@@ -46,13 +46,28 @@ const Header = (props: APIHeader.Props) => {
                     </div>
                     <ul className={`${styles.pc} ${props.theme == 'light' ? styles.light : ''}`}>
                         <li>
-                            <Link href='/projects'><a>PROJECTS</a></Link>
+                            <Link href='/projects'>
+                                <a>
+                                    <span className={styles.name}>PROJECTS</span>
+                                    <span className={styles.alias}>项目案例</span>
+                                </a>
+                            </Link>
                         </li>
                         <li>
-                            <Link href='/about'><a>ABOUT</a></Link>
+                            <Link href='/about'>
+                                <a>
+                                    <span className={styles.name}>ABOUT</span>
+                                    <span className={styles.alias}>关于我们</span>
+                                </a>
+                            </Link>
                         </li>
                         <li>
-                            <Link href='/contact'><a>CONTACT</a></Link>
+                            <Link href='/contact'>
+                                <a>
+                                    <span className={styles.name}>CONTACT</span>
+                                    <span className={styles.alias}>联系我们</span>
+                                </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

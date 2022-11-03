@@ -11,6 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: '1573316761741168640',
                     name: 'EXHIBITION',
+                    alias: '展览',
                     title: 'EXHIBITION title',
                     keyword: 'EXHIBITION keyword',
                     description: 'EXHIBITION description',
@@ -18,6 +19,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: '1573316803155726336',
                     name: 'BRAND',
+                    alias: '品牌',
                     title: 'BRAND title',
                     keyword: 'BRAND keyword',
                     description: 'BRAND description',
@@ -25,6 +27,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: '1573316846491275264',
                     name: 'BOOKS',
+                    alias: '书籍',
                     title: 'BOOKS title',
                     keyword: 'BOOKS keyword',
                     description: 'BOOKS description',
@@ -32,6 +35,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: '1573316950677786624',
                     name: 'SURROUNDINGS',
+                    alias: '环境',
                     title: 'SURROUNDINGS title',
                     keyword: 'SURROUNDINGS keyword',
                     description: 'SURROUNDINGS description',

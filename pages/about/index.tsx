@@ -8,7 +8,7 @@ import Constants from "@/util/Constants";
 
 const AboutComponent = dynamic(() => import('@/components/about'))
 
-const About = (props: APIAbout.Props) => {
+export default function About(props: APIAbout.Props) {
 
     return (
         <>
@@ -63,5 +63,3 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         },
     }
 }
-
-export default About;

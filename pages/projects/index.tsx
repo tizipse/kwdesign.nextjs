@@ -1,4 +1,4 @@
-import type {GetServerSideProps, NextPage} from 'next'
+import type {GetServerSideProps} from 'next'
 import Head from 'next/head'
 import dynamic from "next/dynamic";
 import {doPicture} from "@/services/picture";
@@ -9,7 +9,7 @@ import {doProjects} from "@/services/project";
 
 const ProjectsComponent = dynamic(() => import('@/components/projects'))
 
-const Projects: NextPage = (props: APIProjects.Projects) => {
+export default function Projects(props: APIProjects.Projects) {
 
     return (
         <>
@@ -67,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         }
 
         if (!seo.title) {
-            seo.title = classification.name
+            seo.title = [classification.english, classification.chinese].filter(item => item).join(' - ')
         }
     }
 
@@ -89,5 +89,3 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         },
     }
 }
-
-export default Projects;

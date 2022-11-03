@@ -1,4 +1,4 @@
-import type {GetServerSideProps, NextPage} from 'next'
+import type {GetServerSideProps} from 'next'
 import Head from 'next/head'
 import dynamic from "next/dynamic";
 import {doBanners} from "@/services/banner";
@@ -8,7 +8,7 @@ import {doCategory} from "@/services/category";
 
 const HomeComponent = dynamic(() => import('@/components/home'))
 
-const Home: NextPage = (props: APIHome.Props) => {
+export default function Index(props: APIHome.Props) {
 
     return (
         <>
@@ -58,5 +58,3 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         },
     }
 }
-
-export default Home;

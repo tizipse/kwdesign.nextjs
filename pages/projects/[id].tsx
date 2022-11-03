@@ -8,7 +8,7 @@ import Constants from "@/util/Constants";
 
 const ProjectComponent = dynamic(() => import('@/components/project'))
 
-const Project = (props: APIProjects.Project) => {
+export default function Project(props: APIProjects.Project) {
 
     return (
         <>
@@ -67,5 +67,3 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
         },
     }
 }
-
-export default Project;

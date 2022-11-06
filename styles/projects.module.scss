@@ -43,6 +43,7 @@
     }
 
     .projects {
+      margin-bottom: 50px;
 
       :global {
 
@@ -135,7 +136,13 @@
       }
     }
 
+    .loading {
+      text-align: center;
+      margin: 50px 0;
+    }
+
     .paginate {
+      display: none;
       margin: 30px 10px 50px 0;
       float: right;
       clear: both;

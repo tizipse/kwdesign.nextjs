@@ -1,7 +1,8 @@
 import axios, {AxiosResponse} from "axios";
 
 export const doProjects = (params?: any) => {
-    return axios.get<any, AxiosResponse<RESResponse.Response<RESProject.Projects[]>>>(`${process.env.REQUEST_URL}/client/web/projects`, {params})
+    const url = process.env.REQUEST_URL ?? '/api';
+    return axios.get<any, AxiosResponse<RESResponse.Response<RESResponse.Paginate<RESProject.Projects>>>>(`${url}/client/web/projects`, {params})
 }
 
 export const doProject = (id?: string) => {

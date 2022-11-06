@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     const picture = await doPicture();
     const setting = await doSetting();
-    const relates = await doProjectByRelated(project.data?.data?.classification, project.data?.data?.id)
+    // const relates = await doProjectByRelated(project.data?.data?.classification, project.data?.data?.id)
 
     let seo: APIBasic.Seo = {
         title: project.data?.data?.title,
@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
             picture: picture?.data?.data,
             setting: setting?.data?.data,
             project: project.data.data,
-            relates: relates.data.data,
+            // relates: relates.data.data,
         },
     }
 }

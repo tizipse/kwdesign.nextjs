@@ -16,6 +16,7 @@ declare namespace RESProject {
         address?: string;
         picture?: string;
         pictures?: string[];
+        height?: number;
         title?: string;
         keyword?: string;
         description?: string;

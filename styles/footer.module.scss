@@ -1,20 +1,37 @@
 @import "config";
 
 .footer {
-  background: $primaryColor;
-  padding: 40px 0;
+  padding: 20px 0;
 
   a {
-    color: white;
+    color: #000;
   }
 
   .foot {
-    max-width: 1920px;
     margin: 0 auto;
+    padding: 0 2vw;
+
+    .copyright {
+      display: inline;
+      text-align: center;
+      margin-right: 20px;
+
+      @media (max-width: $mobileWidth) {
+        display: block;
+        margin-right: 0 !important;
+      }
+    }
 
     .nav {
+      display: inline;
       list-style: none;
       text-align: center;
+      margin-right: 20px;
+
+      @media (max-width: $mobileWidth) {
+        display: block;
+        margin-right: 0 !important;
+      }
 
       li {
         display: inline-block;
@@ -22,26 +39,20 @@
         a {
           display: block;
           padding: 0 5px;
-        }
-      }
-    }
-
-    .logo {
-      padding: 30px 0;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          height: 90px;
         }
       }
     }
 
     .certification {
+      display: inline;
       list-style: none;
       text-align: center;
+      margin-right: 20px;
+
+      @media (max-width: $mobileWidth) {
+        display: block;
+        margin-right: 0 !important;
+      }
 
       li {
         display: inline-block;
@@ -49,15 +60,19 @@
         a {
           display: block;
           padding: 0 5px;
-          font-size: 12px;
         }
       }
     }
 
-    .copyright {
-      text-align: center;
-      color: white;
-      font-size: 12px;
+    .back {
+      cursor: pointer;
+      display: inline;
+      float: right;
+      font-weight: bolder;
+
+      @media (max-width: $mobileWidth) {
+        display: none;
+      }
     }
   }
 }

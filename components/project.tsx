@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
-import {Grid, Image} from "@arco-design/web-react";
+import {Grid} from "@arco-design/web-react";
 import {useEffect} from "react";
-import Link from "next/link";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 
 import styles from '@/styles/project.module.scss'
+import project from "@/components/project";
 
 const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))
@@ -97,78 +97,47 @@ const Project = (props: APIProjects.Project) => {
 
     return (
         <>
-            <Header theme={props.project?.theme} picture={props.picture} setting={props.setting}/>
+            <Header logo='scroll' full theme={props.project?.theme} picture={props.picture}
+                    setting={props.setting}/>
             <main className={styles.main}>
-                <div className={styles.picture}>
+                <div className={styles.picture} style={{height: `${props.project?.height ?? 75}vh`}}>
                     <img src={props.project?.picture} alt={props.project?.name}/>
                 </div>
-                <div id='container' className={styles.container}>
-                    <h3>{props.project?.name}</h3>
-                    {
-                        props.project?.dated_at &&
-                        <p>{dayjs(props.project.dated_at).format('YYYY')}</p>
-                    }
-                    {
-                        props.project?.address &&
-                        <p>{props.project?.address}</p>
-                    }
+                <Grid.Row id='container' gutter={30} className={styles.container}>
+                    <Grid.Col span={6} md={8} sm={24}>
+                        <h3>{props.project?.name}</h3>
+                        {
+                            props.project?.dated_at &&
+                            <p>{dayjs(props.project.dated_at).format('YYYY')}</p>
+                        }
+                        {
+                            props.project?.address &&
+                            <p>{props.project?.address}</p>
+                        }
+                    </Grid.Col>
                     {
                         props.project?.html &&
-                        <div id='html' className={styles.html} dangerouslySetInnerHTML={{__html: props.project.html}}/>
+                        <Grid.Col span={18} md={16} sm={24} id='html' className={styles.html}
+                                  dangerouslySetInnerHTML={{__html: props.project.html}}/>
                     }
-                </div>
+                </Grid.Row>
                 {
                     props.project?.pictures && props.project.pictures.length > 0 &&
                     <div className={styles.pictures}>
-                        <Image.PreviewGroup infinite>
-                            <Grid.Row>
-                                {
-                                    props.project.pictures.map((item, index) => (
-                                        <Grid.Col key={index} xs={24} sm={24} md={12} className={styles.items}>
-                                            <Image src={item} alt={props.project?.name} className={styles.preview}/>
-                                        </Grid.Col>
-                                    ))
-                                }
-                            </Grid.Row>
-                        </Image.PreviewGroup>
-                    </div>
-                }
-                {
-                    props.relates && props.relates.length > 0 &&
-                    <div id='related' className={styles.related}>
-                        <h5>RELATED PROJECTS</h5>
-                        <div className={styles.relates}>
-                            <Grid.Row>
-                                {
-                                    props.relates.map(item => (
-                                        <Grid.Col key={item.id} sm={12} xs={12} md={6}>
-                                            <Link href={`/projects/${item.id}`}>
-                                                <a>
-                                                    <div className={styles.tips}>
-                                                        {
-                                                            item.dated_at &&
-                                                            <span>{dayjs(item.dated_at).format('YYYY')}</span>
-                                                        }
-                                                        {
-                                                            item.name &&
-                                                            <h3>{item.name}</h3>
-                                                        }
-                                                    </div>
-                                                    <div className={styles.mark}/>
-                                                    <div className={styles.thumb}>
-                                                        <img src={item.picture} alt={item.name}/>
-                                                    </div>
-                                                </a>
-                                            </Link>
-                                        </Grid.Col>
-                                    ))
-                                }
-                            </Grid.Row>
-                        </div>
+                        <Grid.Row gutter={[10, 5]}>
+                            {
+                                props.project.pictures.map((item, index) => (
+                                    <Grid.Col key={index}
+                                              span={props.project?.pictures && props.project.pictures.length >= 4 && index < props.project.pictures.length - 2 ? 24 : 12}>
+                                        <img src={item} alt={props.project?.name} className={styles.preview}/>
+                                    </Grid.Col>
+                                ))
+                            }
+                        </Grid.Row>
                     </div>
                 }
             </main>
-            <Footer picture={props.picture} setting={props.setting}/>
+            <Footer full picture={props.picture} setting={props.setting}/>
         </>
     )
 }

@@ -26,7 +26,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
 
     for (let i = 0; i < pageSize; i += 1) {
         data.push({
-            id: `157357243831314432${i}`,
+            id: `157357243831314432${i + pageSize * current}`,
             picture: pictures[i % 3],
             name: '中国共产主义青年团建团 100 周年',
             dated_at: `2022-09-2${i}`
@@ -41,7 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
             data: {
                 page: current,
                 size: pageSize,
-                total: (current + 1) * pageSize,
+                total: 7,
                 data: data,
             },
         })

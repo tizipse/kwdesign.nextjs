@@ -1,7 +1,6 @@
-declare namespace APIFooter {
+declare namespace APIFooterBak {
 
     type Props = {
-        full?: boolean;
         picture?: Record<string, string>,
         setting?: Record<string, string>,
     }

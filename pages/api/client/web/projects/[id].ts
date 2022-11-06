@@ -5,18 +5,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
 
     const {id}: { id?: string } = req.query;
 
-    if (id != '1573572438313144320') {
-
-        res
-            .status(200)
-            .json({
-                code: 40400,
-                message: '项目不存在',
-            })
-
-        return
-    }
-
     res
         .status(200)
         .json({
@@ -28,6 +16,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 name: '中国共产主义青年团建团 100 周年',
                 address: '杭州富阳区',
                 picture: 'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
+                height: 100,
                 title: '',
                 keyword: 'keyword',
                 description: 'description',
@@ -35,12 +24,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 dated_at: '2022-09-21',
                 pictures: [
                     'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
-                    'https://static.uper.io/kwd/banner/1574062963084496896.jpeg',
                     'https://static.uper.io/kwd/banner/1574063095213461504.jpeg',
                     'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
                     'https://static.uper.io/kwd/banner/1574062963084496896.jpeg',
-                    'https://static.uper.io/kwd/banner/1574063095213461504.jpeg',
-                    'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg',
                     'https://static.uper.io/kwd/banner/1574062963084496896.jpeg',
                 ],
             },

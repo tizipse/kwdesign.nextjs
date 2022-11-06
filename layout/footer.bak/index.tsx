@@ -1,19 +1,11 @@
-import Link from "next/link";
-import {useRouter} from "next/router";
-
 import styles from '@/styles/footer.module.scss';
+import Link from "next/link";
 
-const Footer = (props: APIFooter.Props) => {
-
-    const router = useRouter();
+const Footer = (props: APIFooterBak.Props) => {
 
     return (
         <footer className={styles.footer}>
-            <div className={styles.foot} style={{maxWidth: props.full ? undefined : '1920px'}}>
-                {
-                    props.setting?.copyright &&
-                    <p className={styles.copyright}>{props.setting?.copyright}</p>
-                }
+            <div className={styles.foot}>
                 <ul className={styles.nav}>
                     <li>
                         <Link href='/projects'>
@@ -31,6 +23,14 @@ const Footer = (props: APIFooter.Props) => {
                         </Link>
                     </li>
                 </ul>
+                {
+                    props.picture?.logo_bottom &&
+                    <div className={styles.logo}>
+                        <Link href='/'>
+                            <a><img src={props.picture?.logo_bottom} alt={props.setting?.company_zh}/></a>
+                        </Link>
+                    </div>
+                }
                 {
                     (props.setting?.icp || props.setting?.police) &&
                     <ul className={styles.certification}>
@@ -50,7 +50,10 @@ const Footer = (props: APIFooter.Props) => {
                         }
                     </ul>
                 }
-                <span onClick={() => router.back()} className={styles.back}>BACK</span>
+                {
+                    props.setting?.copyright &&
+                    <p className={styles.copyright}>{props.setting?.copyright}</p>
+                }
             </div>
         </footer>
     )

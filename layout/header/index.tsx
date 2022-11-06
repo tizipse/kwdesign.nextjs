@@ -36,11 +36,15 @@ const Header = (props: APIHeader.Props) => {
     return (
         <>
             <header className={styles.header}>
-                <div className={styles.head}>
-                    <div className={styles.logo}>
+                <div className={styles.head} style={{maxWidth: props.full ? undefined : '1920px'}}>
+                    <div className={styles.logo} style={{position: props.logo == 'scroll' ? undefined : 'fixed'}}>
                         <Link href='/'>
                             <a>
-                                <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
+                                {
+                                    props.theme == 'light' ?
+                                        <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/> :
+                                        <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
+                                }
                             </a>
                         </Link>
                     </div>

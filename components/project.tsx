@@ -3,9 +3,9 @@ import {Grid} from "@arco-design/web-react";
 import {useEffect} from "react";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 import styles from '@/styles/project.module.scss'
-import Link from "next/link";
 
 const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))

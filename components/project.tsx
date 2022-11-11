@@ -127,7 +127,7 @@ const Project = (props: APIProjects.Project) => {
                         <Grid.Row gutter={[10, 5]}>
                             {
                                 props.project.pictures.map((item, index) => (
-                                    <Grid.Col key={index} span={24}>
+                                    <Grid.Col key={`${props.project?.id}-${index}`} span={24}>
                                         <img src={item} alt={props.project?.name}/>
                                     </Grid.Col>
                                 ))

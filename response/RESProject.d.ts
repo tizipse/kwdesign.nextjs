@@ -32,4 +32,12 @@ declare namespace RESProject {
         dated_at?: string;
     }
 
+    type Recommend = {
+        id?: string;
+        name?: string;
+        address?: string;
+        picture?: string;
+        dated_at?: string;
+    }
+
 }

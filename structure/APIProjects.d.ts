@@ -14,6 +14,7 @@ declare namespace APIProjects {
         seo?: APIBasic.Seo,
         project?: RESProject.Project,
         relates?: RESProject.Related[],
+        recommends?: RESProject.Recommend[],
     }
 
 }

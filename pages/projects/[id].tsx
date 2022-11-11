@@ -3,7 +3,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import {doPicture} from "@/services/picture";
 import {doSetting} from "@/services/setting";
-import {doProject, doProjectByRelated} from "@/services/project";
+import {doProject, doProjectByRecommend, doProjectByRelated} from "@/services/project";
 import Constants from "@/util/Constants";
 
 const ProjectComponent = dynamic(() => import('@/components/project'))
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     const picture = await doPicture();
     const setting = await doSetting();
-    // const relates = await doProjectByRelated(project.data?.data?.classification, project.data?.data?.id)
+    const recommends = await doProjectByRecommend({number: 2, excludes: [id]})
 
     let seo: APIBasic.Seo = {
         title: project.data?.data?.title,
@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
             picture: picture?.data?.data,
             setting: setting?.data?.data,
             project: project.data.data,
-            // relates: relates.data.data,
+            recommends: recommends.data.data,
         },
     }
 }

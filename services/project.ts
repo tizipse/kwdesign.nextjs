@@ -17,3 +17,7 @@ export const doProjectByRelated = (classification?: string, project?: string) =>
         }
     })
 }
+
+export const doProjectByRecommend = (params: { number: number, classification?: string, excludes?: string[] }) => {
+    return axios.get<any, AxiosResponse<RESResponse.Response<RESProject.Related[]>>>(`${process.env.REQUEST_URL}/client/web/project/recommend`, {params})
+}

@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 
 import styles from '@/styles/project.module.scss'
-import project from "@/components/project";
+import Link from "next/link";
 
 const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))
@@ -51,13 +51,13 @@ const Project = (props: APIProjects.Project) => {
         }
     }
 
-    const onRelated = () => {
+    const onRecommend = () => {
 
-        const related = document.getElementById('related')
+        const recommend = document.getElementById('recommend')
 
-        if (related) {
-            for (let i = 0; i < related.children.length; i += 1) {
-                const item = related.children.item(i)
+        if (recommend) {
+            for (let i = 0; i < recommend.children.length; i += 1) {
+                const item = recommend.children.item(i)
                 if (item) {
 
                     // @ts-ignore
@@ -79,7 +79,7 @@ const Project = (props: APIProjects.Project) => {
 
         onHtml()
 
-        onRelated()
+        onRecommend()
     }
 
     const onScroll = (e: any) => {
@@ -127,13 +127,46 @@ const Project = (props: APIProjects.Project) => {
                         <Grid.Row gutter={[10, 5]}>
                             {
                                 props.project.pictures.map((item, index) => (
-                                    <Grid.Col key={index}
-                                              span={props.project?.pictures && props.project.pictures.length >= 4 && index < props.project.pictures.length - 2 ? 24 : 12}>
-                                        <img src={item} alt={props.project?.name} className={styles.preview}/>
+                                    <Grid.Col key={index} span={24}>
+                                        <img src={item} alt={props.project?.name}/>
                                     </Grid.Col>
                                 ))
                             }
                         </Grid.Row>
+                    </div>
+                }
+                {
+                    props.recommends && props.recommends.length > 0 &&
+                    <div id='recommend' className={styles.recommends}>
+                        <h5>You might also like</h5>
+                        <div className={styles.recommend}>
+                            <Grid.Row>
+                                {
+                                    props.recommends.map(item => (
+                                        <Grid.Col key={item.id} sm={24} xs={24} md={12}>
+                                            <Link href={`/projects/${item.id}`}>
+                                                <a>
+                                                    <div className={styles.tips}>
+                                                        {
+                                                            item.dated_at &&
+                                                            <span>{dayjs(item.dated_at).format('YYYY')}</span>
+                                                        }
+                                                        {
+                                                            item.name &&
+                                                            <h3>{item.name}</h3>
+                                                        }
+                                                    </div>
+                                                    <div className={styles.mark}/>
+                                                    <div className={styles.thumb}>
+                                                        <img src={item.picture} alt={item.name}/>
+                                                    </div>
+                                                </a>
+                                            </Link>
+                                        </Grid.Col>
+                                    ))
+                                }
+                            </Grid.Row>
+                        </div>
                     </div>
                 }
             </main>

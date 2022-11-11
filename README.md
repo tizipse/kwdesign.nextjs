@@ -27,8 +27,27 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Run on Docker
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+编译镜像
+```bash
+docker build -t nextjs/kwd:1.0.0 .
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+运行容器
+```bash
+docker run \
+    -d \
+    --name nextjs-kwd \
+    --privileged=true \
+    --net service \
+    --ip 172.19.0.111 \
+    nextjs/kwd:1.0.0
+```
+
+*注：容器运行后不包含环境文件，请注意配置。否则将会报错*
+
+复制当前目录中的环境文件到容器中
+```bash
+docker cp ./.env.local nextjs-kwd:/app
+```

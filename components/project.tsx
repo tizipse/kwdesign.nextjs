@@ -103,28 +103,23 @@ const Project = (props: APIProjects.Project) => {
                 <div className={styles.picture} style={{height: `${props.project?.height ?? 75}vh`}}>
                     <img src={props.project?.picture} alt={props.project?.name}/>
                 </div>
-                <Grid.Row id='container' gutter={30} className={styles.container}>
-                    <Grid.Col span={6} md={8} sm={24}>
+                <Grid.Row id='container' className={styles.container}>
+                    <Grid.Col span={9} md={12} sm={24} className={styles.information}>
                         <h3>{props.project?.name}</h3>
-                        {
-                            props.project?.dated_at &&
-                            <p>{dayjs(props.project.dated_at).format('YYYY')}</p>
-                        }
-                        {
-                            props.project?.address &&
-                            <p>{props.project?.address}</p>
-                        }
+                        {props.project?.address && <p>{props.project?.address}</p>}
+                        {props.project?.dated_at && <p>{dayjs(props.project.dated_at).format('YYYY')}</p>}
                     </Grid.Col>
+                    <Grid.Col span={15} md={12} sm={0}/>
                     {
                         props.project?.html &&
-                        <Grid.Col span={18} md={16} sm={24} id='html' className={styles.html}
+                        <Grid.Col span={9} md={12} sm={24} id='html' className={styles.html}
                                   dangerouslySetInnerHTML={{__html: props.project.html}}/>
                     }
                 </Grid.Row>
                 {
                     props.project?.pictures && props.project.pictures.length > 0 &&
                     <div className={styles.pictures}>
-                        <Grid.Row gutter={[10, 5]}>
+                        <Grid.Row gutter={[0, 30]}>
                             {
                                 props.project.pictures.map((item, index) => (
                                     <Grid.Col key={`${props.project?.id}-${index}`} span={24}>
@@ -140,7 +135,7 @@ const Project = (props: APIProjects.Project) => {
                     <div id='recommend' className={styles.recommends}>
                         <h5>You might also like</h5>
                         <div className={styles.recommend}>
-                            <Grid.Row>
+                            <Grid.Row gutter={22}>
                                 {
                                     props.recommends.map(item => (
                                         <Grid.Col key={item.id} sm={24} xs={24} md={12}>

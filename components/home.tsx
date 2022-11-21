@@ -41,7 +41,7 @@ const Home = (props: APIHome.Props) => {
                 }
                 <header className={styles.header}>
                     <Grid.Row className={styles.head}>
-                        <Grid.Col flex='clamp(140px, 14vw, 240px)' className={styles.logo}>
+                        <Grid.Col flex='0 0 40px' className={styles.logo}>
                             {
                                 theme == 'light' &&
                                 <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/>

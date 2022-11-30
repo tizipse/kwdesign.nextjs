@@ -41,7 +41,7 @@ const Home = (props: APIHome.Props) => {
                 }
                 <header className={styles.header}>
                     <Grid.Row className={styles.head}>
-                        <Grid.Col flex='0 0 40px' className={styles.logo}>
+                        <Grid.Col flex='0 0 20px' className={styles.logo}>
                             {
                                 theme == 'light' &&
                                 <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/>
@@ -83,6 +83,7 @@ const Home = (props: APIHome.Props) => {
                 </header>
                 <div className={styles.banners}>
                     <Carousel autoPlay={{interval: 5000, hoverToPause: false}} showArrow='never'
+                              moveSpeed={1000}
                               indicatorType='never'
                               onChange={onCarousel}
                               className={styles.carousel}>

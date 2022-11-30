@@ -10,7 +10,7 @@
     display: flex;
 
     .logo {
-      height: 40px;
+      height: 22px;
       padding: 31px 0 0 36px;
       z-index: 99;
       flex: 0 0 40px;
@@ -52,29 +52,36 @@
         letter-spacing: 0;
 
         a {
+          padding: 0 10px;
+          height: 40px;
           text-align: center;
-          width: 100px;
+          //width: 100px;
           display: block;
           text-underline: none;
           text-decoration: none;
           color: #000000;
+          overflow: hidden;
 
-          .name {
-            display: inline;
+          span {
+            display: block;
           }
 
           .alias {
-            display: none;
+            font-size: 15px;
           }
 
           &:hover {
 
             .name {
-              display: none;
+              position: relative;
+              top: -40px;
+              //display: none;
             }
 
             .alias {
-              display: inline;
+              position: relative;
+              top: -40px;
+              //display: inline;
             }
           }
         }

@@ -3,7 +3,7 @@
 .main {
   padding-top: 150px;
   max-width: 500px;
-  margin: 0 auto 100px;
+  margin: 0 auto 50px;
 
   @media (max-width: $mobileWidth) {
     margin: 0 auto 50px;
@@ -15,12 +15,13 @@
 
     h1 {
       font-size: 28px;
+      line-height: 30px;
       font-weight: normal;
       margin-bottom: 5px;
     }
 
     h3 {
-      color: rgba(0, 0, 0, .5);
+      //color: rgba(0, 0, 0, .5);
       margin: 0;
       font-size: 16px;
       font-weight: normal;
@@ -36,22 +37,23 @@
       margin-bottom: 50px;
 
       h3 {
-        color: rgba(0, 0, 0, .8);
+        //color: rgba(0, 0, 0, .8);
         font-size: 24px;
         margin-bottom: 10px;
       }
 
       p {
-        color: rgba(0, 0, 0, .5);
+        //color: rgba(0, 0, 0, .5);
         margin: 5px 0;
       }
     }
   }
+}
 
-  .picture {
+.picture {
+  padding: 36px;
 
-    img {
-      width: 100%;
-    }
+  img {
+    width: 100%;
   }
 }

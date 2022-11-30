@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: 1000,
                     theme: 'light',
-                    picture: 'https://static.uper.io/kwd/banner/1572954168170123264.jpg',
+                    picture: 'https://static.kwdesign.cn/kwd/banner/1572954168170123264.jpg',
                     name: '首页',
                     target: 'self',
                     url: 'https://baidu.com',
@@ -19,7 +19,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: 1001,
                     theme: 'light',
-                    picture: 'https://static.uper.io/kwd/banner/1574062963084496896.jpeg',
+                    picture: 'https://static.kwdesign.cn/kwd/banner/1574062963084496896.jpeg',
                     name: '首页',
                     target: 'self',
                     url: '',
@@ -27,7 +27,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 {
                     id: 1002,
                     theme: 'dark',
-                    picture: 'https://static.uper.io/kwd/banner/1574063095213461504.jpeg',
+                    picture: 'https://static.kwdesign.cn/kwd/banner/1574063095213461504.jpeg',
                     name: '首页',
                     target: 'self',
                     url: '',

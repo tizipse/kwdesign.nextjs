@@ -95,13 +95,13 @@ const Contact = (props: APIContact.Props) => {
                         ))
                     }
                 </ul>
-                {
-                    props.category?.picture &&
-                    <div className={`${styles.picture} scroll-fade-in`}>
-                        <img src={props.category?.picture} alt={props.category?.name}/>
-                    </div>
-                }
             </main>
+            {
+                props.category?.picture &&
+                <div className={`${styles.picture}`}>
+                    <img src={props.category?.picture} alt={props.category?.name}/>
+                </div>
+            }
             <Footer picture={props.picture} setting={props.setting}/>
         </>
     )

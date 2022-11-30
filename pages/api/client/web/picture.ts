@@ -8,9 +8,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
             code: 20000,
             message: 'Success',
             data: {
-                logo_light: 'https://static.uper.io/kwd/picture/1573949550798835712.png',
-                logo_dark: 'https://static.uper.io/kwd/picture/1574020566149500928.png',
-                logo_mobile: 'https://static.uper.io/kwd/picture/1575844583651151872.png',
+                logo_light: 'https://static.kwdesign.cn/kwd/picture/1573949550798835712.png',
+                logo_dark: 'https://static.kwdesign.cn/kwd/picture/1574020566149500928.png',
+                logo_mobile: 'https://static.kwdesign.cn/kwd/picture/1575844583651151872.png',
             },
         })
 }

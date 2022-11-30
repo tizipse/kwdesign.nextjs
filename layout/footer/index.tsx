@@ -14,23 +14,23 @@ const Footer = (props: APIFooter.Props) => {
                     props.setting?.copyright &&
                     <p className={styles.copyright}>{props.setting?.copyright}</p>
                 }
-                <ul className={styles.nav}>
-                    <li>
-                        <Link href='/projects'>
-                            <a>PROJECTS</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href='/about'>
-                            <a>ABOUT</a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href='/contact'>
-                            <a>CONTACT</a>
-                        </Link>
-                    </li>
-                </ul>
+                {/*<ul className={styles.nav}>*/}
+                {/*    <li>*/}
+                {/*        <Link href='/projects'>*/}
+                {/*            <a>PROJECTS</a>*/}
+                {/*        </Link>*/}
+                {/*    </li>*/}
+                {/*    <li>*/}
+                {/*        <Link href='/about'>*/}
+                {/*            <a>ABOUT</a>*/}
+                {/*        </Link>*/}
+                {/*    </li>*/}
+                {/*    <li>*/}
+                {/*        <Link href='/contact'>*/}
+                {/*            <a>CONTACT</a>*/}
+                {/*        </Link>*/}
+                {/*    </li>*/}
+                {/*</ul>*/}
                 {
                     (props.setting?.icp || props.setting?.police) &&
                     <ul className={styles.certification}>

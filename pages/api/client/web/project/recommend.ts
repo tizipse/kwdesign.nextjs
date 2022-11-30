@@ -12,9 +12,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
     if (number && typeof number == 'string') num = parseInt(number, 10)
 
     const pictures = [
-        'https://static.uper.io/kwd/banner/1572954168170123264.jpg',
-        'https://static.uper.io/kwd/banner/1574062963084496896.jpeg',
-        'https://static.uper.io/kwd/banner/1574063095213461504.jpeg',
+        'https://static.kwdesign.cn/kwd/banner/1572954168170123264.jpg',
+        'https://static.kwdesign.cn/kwd/banner/1574062963084496896.jpeg',
+        'https://static.kwdesign.cn/kwd/banner/1574063095213461504.jpeg',
     ];
 
     for (let i = 0; i < num; i += 1) {

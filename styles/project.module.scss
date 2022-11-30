@@ -19,7 +19,7 @@
   }
 
   .container {
-    padding: 0 36px 0;
+    padding: 100px 36px 0;
 
     > *, .html > * {
       opacity: 0;
@@ -36,33 +36,42 @@
     }
 
     .information {
-      font-family: "微软雅黑", -apple-system, sans-serif;
+      //font-family: "微软雅黑", -apple-system, sans-serif;
       letter-spacing: 0;
 
       h3 {
         font-size: 40px;
-        margin: 100px 0 25px;
-        font-weight: 500;
+        margin: 23px 0 25px;
+        font-weight: 600;
       }
 
       p {
-        font-size: 28px;
-        margin: 0 0 5px;
+        font-size: 22px;
+        line-height: 26px;
+        margin: 0 0 0;
+
+        &.date {
+          font-size: 18px;
+        }
       }
     }
 
     .html {
       font-size: 23px;
       letter-spacing: 0;
-      margin-top: 20px;
+      //margin-top: 20px;
       opacity: 1 !important;
       transform: translateY(0) !important;
+
+      p {
+        line-height: 30px;
+      }
     }
   }
 
   .pictures {
-    margin: 100px auto 50px;
-    padding: 0 36px;
+    margin: 100px auto 60px;
+    padding: 0 30px;
 
     img {
       width: 100%;
@@ -95,31 +104,29 @@
     h5 {
       font-size: 23px;
       font-weight: normal;
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       margin-top: 0;
     }
 
     .recommend {
-      width: 100%;
-      position: relative;
 
       a {
         position: relative;
         display: block;
         width: 100%;
-        height: 100%;
+        height: inherit;
         color: black;
 
         &:hover {
-          img {
-            transform: scale(1.2);
-            //opacity: 0;
-          }
+          //img {
+          //  transform: scale(1.2);
+          //  //opacity: 0;
+          //}
 
           .tips {
             opacity: 1;
             color: white;
-            transition: all .3s ease;
+            transition: all .6s ease;
           }
 
           .mark {
@@ -131,17 +138,16 @@
         .tips {
           opacity: 0;
           position: absolute;
-          left: 0;
           bottom: 0;
-          right: 0;
           z-index: 9;
-          padding: 10px;
+          padding: 15px;
 
           span {
             font-size: 12px;
           }
 
           h3 {
+            font-weight: normal;
             margin: 0;
             font-size: 13px;
             line-height: 14px;
@@ -154,33 +160,16 @@
           width: 100%;
           height: 100%;
           pointer-events: none;
-          background: linear-gradient(to top, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .4) 30%, rgba(0, 0, 0, 0) 80%);
+          background: linear-gradient(to top, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .4) 30%, rgba(0, 0, 0, 0) 80%);
           z-index: 8;
         }
 
-        .thumb {
+        img {
+          display: block;
           width: 100%;
-          height: 580px;
-          position: relative;
-          overflow: hidden;
-
-          img {
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            box-sizing: inherit;
-            transition: all 1.2s ease-in-out;
-          }
+          height: 100%;
         }
       }
-
-      height: auto;
     }
   }
 }
@@ -204,5 +193,4 @@
       transform: scale(1.15)
     }
   }
-
 }

@@ -13,29 +13,41 @@
         display: inline-block;
 
         a {
-          width: 100px;
+          height: 18px;
+          line-height: 18px;
+          padding: 0 10px;
+          //width: 100px;
           text-align: center;
           display: block;
           text-underline: none;
           text-decoration: none;
           color: black;
+          overflow: hidden;
 
-          .name {
-            display: inline;
+          span {
+            display: block;
           }
 
-          .alias {
-            display: none;
-          }
+          //.name {
+          //  display: inline;
+          //}
+
+          //.alias {
+          //  //display: none;
+          //}
 
           &:hover {
 
             .name {
-              display: none;
+              position: relative;
+              top: -18px;
+              //display: none;
             }
 
             .alias {
-              display: inline;
+              position: relative;
+              top: -18px;
+              //display: inline;
             }
           }
         }
@@ -99,6 +111,8 @@
             }
 
             h3 {
+              font-weight: normal;
+              font-size: 14px;
               margin: 0;
             }
           }

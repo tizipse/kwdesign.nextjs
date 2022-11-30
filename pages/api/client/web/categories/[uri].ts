@@ -5,10 +5,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
 
     const {uri}: { uri?: string } = req.query;
 
-    let picture = 'https://static.uper.io/kwd/category/banner/1573236541277343744.jpg';
+    let picture = 'https://static.kwdesign.cn/kwd/category/banner/1573236541277343744.jpg';
 
     if (uri == 'HOME') {
-        picture = 'https://static.uper.io/kwd/picture/1574020736241111040.png';
+        picture = 'https://static.kwdesign.cn/kwd/picture/1574020736241111040.png';
     }
 
     res

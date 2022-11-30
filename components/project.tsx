@@ -107,19 +107,19 @@ const Project = (props: APIProjects.Project) => {
                     <Grid.Col span={9} md={12} sm={24} className={styles.information}>
                         <h3>{props.project?.name}</h3>
                         {props.project?.address && <p>{props.project?.address}</p>}
-                        {props.project?.dated_at && <p>{dayjs(props.project.dated_at).format('YYYY')}</p>}
+                        {props.project?.dated_at &&
+                            <p className={styles.date}>{dayjs(props.project.dated_at).format('YYYY')}</p>}
                     </Grid.Col>
-                    <Grid.Col span={15} md={12} sm={0}/>
                     {
                         props.project?.html &&
-                        <Grid.Col span={9} md={12} sm={24} id='html' className={styles.html}
+                        <Grid.Col span={15} md={12} sm={0} id='html' className={styles.html}
                                   dangerouslySetInnerHTML={{__html: props.project.html}}/>
                     }
                 </Grid.Row>
                 {
                     props.project?.pictures && props.project.pictures.length > 0 &&
                     <div className={styles.pictures}>
-                        <Grid.Row gutter={[0, 30]}>
+                        <Grid.Row gutter={[0, 15]}>
                             {
                                 props.project.pictures.map((item, index) => (
                                     <Grid.Col key={`${props.project?.id}-${index}`} span={24}>
@@ -134,34 +134,22 @@ const Project = (props: APIProjects.Project) => {
                     props.recommends && props.recommends.length > 0 &&
                     <div id='recommend' className={styles.recommends}>
                         <h5>You might also like</h5>
-                        <div className={styles.recommend}>
-                            <Grid.Row gutter={22}>
-                                {
-                                    props.recommends.map(item => (
-                                        <Grid.Col key={item.id} sm={24} xs={24} md={12}>
-                                            <Link href={`/projects/${item.id}`}>
-                                                <a>
-                                                    <div className={styles.tips}>
-                                                        {
-                                                            item.dated_at &&
-                                                            <span>{dayjs(item.dated_at).format('YYYY')}</span>
-                                                        }
-                                                        {
-                                                            item.name &&
-                                                            <h3>{item.name}</h3>
-                                                        }
-                                                    </div>
-                                                    <div className={styles.mark}/>
-                                                    <div className={styles.thumb}>
-                                                        <img src={item.picture} alt={item.name}/>
-                                                    </div>
-                                                </a>
-                                            </Link>
-                                        </Grid.Col>
-                                    ))
-                                }
-                            </Grid.Row>
-                        </div>
+                        <Grid.Row gutter={[22, 22]} className={styles.recommend}>
+                            {
+                                props.recommends.map(item => (
+                                    <Grid.Col key={item.id} sm={24} xs={24} md={12}>
+                                        <Link href={`/projects/${item.id}`}><a>
+                                            <div className={styles.tips}>
+                                                {item.dated_at &&
+                                                    <span>{dayjs(item.dated_at).format('YYYY')}</span>}
+                                                {item.name &&
+                                                    <h3>{item.name}</h3>}</div>
+                                            <div className={styles.mark}/>
+                                            <img src={item.picture} alt={item.name}/></a></Link>
+                                    </Grid.Col>
+                                ))
+                            }
+                        </Grid.Row>
                     </div>
                 }
             </main>

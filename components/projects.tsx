@@ -137,7 +137,7 @@ const Projects = (props: APIProjects.Projects) => {
                     {
                         projects?.data && projects.data.length > 0 ?
                             <>
-                                <Grid.Row className={styles.projects}>
+                                <Grid.Row gutter={[5, 5]} className={styles.projects}>
                                     {
                                         projects?.data?.map(item => (
                                             <Grid.Col key={item.id} sm={24} md={12} lg={8}
@@ -155,9 +155,7 @@ const Projects = (props: APIProjects.Projects) => {
                                                             }
                                                         </div>
                                                         <div className={styles.mark}/>
-                                                        <div className={styles.thumb}>
-                                                            <img src={item.picture} alt={item.name}/>
-                                                        </div>
+                                                        <img src={item.picture} alt={item.name}/>
                                                     </a>
                                                 </Link>
                                             </Grid.Col>

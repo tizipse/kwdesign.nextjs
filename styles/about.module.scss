@@ -1,8 +1,8 @@
 @import "config";
 
 .main {
+  max-width: 1920px;
   padding-top: 150px;
-  max-width: 500px;
   margin: 0 auto 100px;
 
   @media (max-width: $mobileWidth) {
@@ -11,7 +11,8 @@
   }
 
   .company {
-    margin-bottom: 50px;
+    max-width: 500px;
+    margin: 0 auto 50px;
 
     h1 {
       font-size: 28px;
@@ -28,10 +29,16 @@
   }
 
   .picture {
+    padding: 0 36px;
     margin-bottom: 50px;
 
     img {
       width: 100%;
     }
+  }
+
+  .html {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }

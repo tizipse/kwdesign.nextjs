@@ -137,7 +137,7 @@ const Projects = (props: APIProjects.Projects) => {
                     {
                         projects?.data && projects.data.length > 0 ?
                             <>
-                                <Grid.Row gutter={[5, 5]} className={styles.projects}>
+                                <Grid.Row gutter={[10, 10]} className={styles.projects}>
                                     {
                                         projects?.data?.map(item => (
                                             <Grid.Col key={item.id} sm={24} md={12} lg={8}

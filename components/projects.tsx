@@ -70,8 +70,11 @@ const Projects = (props: APIProjects.Projects) => {
 
     useEffect(() => {
         setProjects(props.projects)
-        onAnimation()
     }, [router.query])
+
+    useEffect(()=>{
+        onAnimation()
+    },[projects])
 
     useEffect(() => {
         window.addEventListener('scroll', onScroll)

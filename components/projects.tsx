@@ -182,8 +182,8 @@ const Projects = (props: APIProjects.Projects) => {
                     }
                     <div className='clear'/>
                 </section>
-                <Footer picture={props.picture} setting={props.setting}/>
             </main>
+            <Footer picture={props.picture} setting={props.setting}/>
         </>
     )
 }

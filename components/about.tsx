@@ -74,16 +74,6 @@ const About = (props: APIAbout.Props) => {
         <>
             <Header picture={props.picture} setting={props.setting}/>
             <main id='main' className={styles.main}>
-                <div className={`${styles.company} scroll-fade-in`}>
-                    {
-                        props.setting?.company_zh &&
-                        <h1>{props.setting?.company_zh}</h1>
-                    }
-                    {
-                        props.setting?.company_en &&
-                        <h3>{props.setting?.company_en}</h3>
-                    }
-                </div>
                 {
                     props.category?.picture &&
                     <div className={`${styles.picture} scroll-fade-in`}>

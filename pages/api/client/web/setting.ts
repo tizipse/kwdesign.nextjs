@@ -13,6 +13,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 copyright: '©️2020 瞰外规划设计有限公司',
                 icp: '浙ICP备15033077号',
                 police: '浙公网安备33010502004618号',
+                bg_index: '#000000',
             },
         })
 }

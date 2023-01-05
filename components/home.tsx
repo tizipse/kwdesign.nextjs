@@ -34,8 +34,15 @@ const Home = (props: APIHome.Props) => {
             <main className={styles.main}>
                 {
                     props.category?.picture &&
-                    <div className={`${styles.mask} ${fadeout.mark ? styles.fadeout : ''}`}
+                    <div className={`${styles.mask} ${fadeout.mark ? styles.fadeout : ''} start_mark`}
                          style={{display: display.mark}}>
+                        <style jsx>
+                            {`
+                              .start_mark::after {
+                                background-color: ${props?.setting?.bg_index || '#000'}
+                              }
+                            `}
+                        </style>
                         <img src={props.category?.picture} alt={props.setting?.company_zh}/>
                     </div>
                 }
@@ -116,13 +123,13 @@ const Home = (props: APIHome.Props) => {
                             props.setting?.icp &&
                             <li>
                                 <a target='_blank'
-                                   rel='noreferrer' href='http://beian.miit.gov.cn/'>{props.setting?.icp}</a>
+                                   rel='noreferrer' href='https://beian.miit.gov.cn/'>{props.setting?.icp}</a>
                             </li>
                         }
                         {
                             props.setting?.police &&
                             <li>
-                                <a href='http://www.beian.gov.cn/portal/registerSystemInfo'
+                                <a href='https://www.beian.gov.cn/portal/registerSystemInfo'
                                    rel='noreferrer' target='_blank'>{props.setting?.police}</a>
                             </li>
                         }

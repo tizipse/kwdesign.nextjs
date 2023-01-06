@@ -1,5 +1,11 @@
+@import "config";
+
 .main {
   padding: 80px 31px 0;
+
+  @media (max-width: $mobileWidth) {
+    padding: 80px 10px 0;
+  }
 
   .section {
     max-width: 1920px;

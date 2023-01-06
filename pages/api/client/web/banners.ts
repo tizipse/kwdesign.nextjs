@@ -10,6 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
             data: [
                 {
                     id: 1000,
+                    client: 'PC',
                     theme: 'light',
                     picture: 'https://static.kwdesign.cn/kwd/banner/1572954168170123264.jpg',
                     name: '首页',
@@ -18,6 +19,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 },
                 {
                     id: 1001,
+                    client: 'PC',
                     theme: 'light',
                     picture: 'https://static.kwdesign.cn/kwd/banner/1574062963084496896.jpeg',
                     name: '首页',
@@ -26,6 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<RESRes
                 },
                 {
                     id: 1002,
+                    client: 'PC',
                     theme: 'dark',
                     picture: 'https://static.kwdesign.cn/kwd/banner/1574063095213461504.jpeg',
                     name: '首页',

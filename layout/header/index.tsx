@@ -29,9 +29,14 @@ const Header = (props: APIHeader.Props) => {
     }, [visible.menu])
 
     useEffect(() => {
-        window.addEventListener('resize', onResize)
-        return () => window.removeEventListener('resize', onResize)
-    }, [visible.menu])
+
+        onResize()
+
+        window.onresize = () => {
+            onResize()
+        }
+
+    }, [])
 
     return (
         <>
@@ -84,18 +89,11 @@ const Header = (props: APIHeader.Props) => {
                     closable={false}
                     onCancel={() => setVisible({...visible, menu: false})}
                     headerStyle={{display: "none"}} wrapClassName={styles.mobile}>
-                {
-                    props.picture?.logo_mobile &&
-                    <div className={styles.logo}>
-                        <Link href='/'>
-                            <a>
-                                <img src={props.picture?.logo_mobile} alt={props.setting?.company_zh}/>
-                            </a>
-                        </Link>
-                    </div>
-                }
                 <div className={styles.nav}>
                     <ul>
+                        <li>
+                            <Link href='/'><a>HOME</a></Link>
+                        </li>
                         <li>
                             <Link href='/projects'><a>PROJECTS</a></Link>
                         </li>

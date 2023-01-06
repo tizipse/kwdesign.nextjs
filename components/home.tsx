@@ -1,11 +1,14 @@
 import {useEffect, useState} from "react";
-import {Carousel, Grid} from '@arco-design/web-react';
-import Link from "next/link";
+import dynamic from "next/dynamic";
+import {Carousel} from '@arco-design/web-react';
 
-import styles from '@/styles/home.module.scss'
+import styles from '@/styles/home.module.scss';
+
+const Header = dynamic(() => import('@/layout/header'))
 
 const Home = (props: APIHome.Props) => {
 
+    const [client, setClient] = useState<string>()
     const [theme, setTheme] = useState<string | undefined>()
     const [display, setDisplay] = useState<APIHome.Display>({})
     const [fadeout, setFadeout] = useState<APIHome.Fadeout>({})
@@ -13,6 +16,14 @@ const Home = (props: APIHome.Props) => {
     const onCarousel = (index: number) => {
         if (props.banners && props.banners[index]) {
             setTheme(props.banners[index].theme)
+        }
+    }
+
+    const onResize = () => {
+        if (document.body.clientWidth <= 768) {
+            setClient('MOBILE')
+        } else {
+            setClient('PC')
         }
     }
 
@@ -27,6 +38,11 @@ const Home = (props: APIHome.Props) => {
 
     useEffect(() => {
         toTimeout()
+        onResize()
+
+        window.onresize = () => {
+            onResize()
+        }
     }, [])
 
     return (
@@ -46,48 +62,7 @@ const Home = (props: APIHome.Props) => {
                         <img src={props.category?.picture} alt={props.setting?.company_zh}/>
                     </div>
                 }
-                <header className={styles.header}>
-                    <Grid.Row className={styles.head}>
-                        <Grid.Col flex='0 0 20px' className={styles.logo}>
-                            {
-                                theme == 'light' &&
-                                <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/>
-                            }
-                            {
-                                theme == 'dark' &&
-                                <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
-                            }
-                        </Grid.Col>
-                        <Grid.Col flex='auto'>
-                            <ul className={`${styles.nav} ${theme}`}>
-                                <li>
-                                    <Link href='/projects'>
-                                        <a>
-                                            <span className={styles.name}>PROJECTS</span>
-                                            <span className={styles.alias}>项目案例</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='/about'>
-                                        <a>
-                                            <span className={styles.name}>ABOUT</span>
-                                            <span className={styles.alias}>关于我们</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href='/contact'>
-                                        <a>
-                                            <span className={styles.name}>CONTACT</span>
-                                            <span className={styles.alias}>联系我们</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </Grid.Col>
-                    </Grid.Row>
-                </header>
+                <Header theme={theme} picture={props.picture} setting={props.setting}/>
                 <div className={styles.banners}>
                     <Carousel autoPlay={{interval: 5000, hoverToPause: false}} showArrow='never'
                               moveSpeed={1000}
@@ -95,7 +70,7 @@ const Home = (props: APIHome.Props) => {
                               onChange={onCarousel}
                               className={styles.carousel}>
                         {
-                            props.banners?.map(item => (
+                            props.banners?.filter(item => item.client == client).map(item => (
                                 item.url ?
                                     <a key={item.id} href={item.url} target={`_${item.target}`}>
                                         <div key={item.id} className={styles.banner} title={item.name}
@@ -123,7 +98,8 @@ const Home = (props: APIHome.Props) => {
                             props.setting?.icp &&
                             <li>
                                 <a target='_blank'
-                                   rel='noreferrer' href='https://beian.miit.gov.cn/'>{props.setting?.icp}</a>
+                                   rel='noreferrer'
+                                   href='https://beian.miit.gov.cn/#/Integrated/index'>{props.setting?.icp}</a>
                             </li>
                         }
                         {

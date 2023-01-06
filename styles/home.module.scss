@@ -166,6 +166,10 @@
 
             a {
               color: #fff;
+
+              &:visited {
+                color: #fff;
+              }
             }
           }
         }
@@ -176,6 +180,10 @@
 
             a {
               color: #000000;
+
+              &:visited {
+                color: #000000;
+              }
             }
           }
         }

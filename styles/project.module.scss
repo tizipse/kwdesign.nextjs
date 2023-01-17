@@ -1,3 +1,5 @@
+@import "config";
+
 .main {
   margin-bottom: 50px;
 
@@ -20,6 +22,10 @@
 
   .container {
     padding: 100px 36px 0;
+
+    @media (max-width: $mobileWidth) {
+      padding: 100px 15px 0;
+    }
 
     > *, .html > * {
       opacity: 0;
@@ -73,15 +79,24 @@
     margin: 100px auto 60px;
     padding: 0 30px;
 
+    @media (max-width: $mobileWidth) {
+      padding: 0 15px;
+    }
+
     img {
       width: 100%;
       height: auto;
+      display: block;
     }
   }
 
   .recommends {
     margin: 0 auto 50px;
     padding: 0 36px;
+
+    @media (max-width: $mobileWidth) {
+      padding: 0 15px;
+    }
 
     :global {
 

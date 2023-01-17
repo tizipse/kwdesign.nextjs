@@ -1,3 +1,5 @@
+@import "config";
+
 .main {
 
   .mask {
@@ -191,11 +193,11 @@
 
       li {
         display: inline-block;
-        line-height: 1.3em;
+        line-height: 16px;
 
-        @media (max-width: 768px) {
+        @media (max-width: $mobileWidth) {
           display: block;
-          font-size: 1.3em;
+          font-size: 12px;
         }
 
         a {

@@ -3,10 +3,13 @@
 .main {
   margin-bottom: 50px;
 
-  .picture {
-    //height: 100vh;
+  .pc {
     position: relative;
     overflow: hidden;
+
+    @media (max-width: $mobileWidth) {
+      display: none;
+    }
 
     img {
       position: absolute;
@@ -17,6 +20,19 @@
       object-fit: cover;
       box-sizing: inherit;
       animation: image-pulse 30s ease-in-out infinite alternate
+    }
+  }
+
+  .mobile {
+    display: none;
+
+    @media (max-width: $mobileWidth) {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 

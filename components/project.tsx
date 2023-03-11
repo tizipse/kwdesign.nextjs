@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import {Grid} from "@arco-design/web-react";
 import {useEffect} from "react";
-import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -11,8 +10,6 @@ const Header = dynamic(() => import('@/layout/header'))
 const Footer = dynamic(() => import('@/layout/footer'))
 
 const Project = (props: APIProjects.Project) => {
-
-    const router = useRouter();
 
     const onContainer = () => {
 
@@ -88,7 +85,7 @@ const Project = (props: APIProjects.Project) => {
 
     useEffect(() => {
         onAnimation()
-    }, [router.query])
+    }, [props.project])
 
     useEffect(() => {
         window.addEventListener('scroll', onScroll)
@@ -100,7 +97,10 @@ const Project = (props: APIProjects.Project) => {
             <Header logo='scroll' full theme={props.project?.theme} picture={props.picture}
                     setting={props.setting}/>
             <main className={styles.main}>
-                <div className={styles.picture} style={{height: `${props.project?.height ?? 75}vh`}}>
+                <div className={styles.pc} style={{height: `${props.project?.height ?? 75}vh`}}>
+                    <img src={props.project?.picture} alt={props.project?.name}/>
+                </div>
+                <div className={styles.mobile}>
                     <img src={props.project?.picture} alt={props.project?.name}/>
                 </div>
                 <Grid.Row id='container' className={styles.container}>

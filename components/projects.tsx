@@ -69,8 +69,8 @@ const Projects = (props: APIProjects.Projects) => {
     }
 
     useEffect(() => {
-        setProjects(props.projects)
-    }, [router.query])
+        setProjects(props.projects);
+    }, [props.projects])
 
     useEffect(() => {
         onAnimation()

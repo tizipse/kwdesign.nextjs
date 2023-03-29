@@ -83,7 +83,7 @@ const Header = (props: APIHeader.Props) => {
             </header>
             <div className={`${styles.toggle} ${visible.menu ? styles.action : ''}`}
                  onClick={() => setVisible({menu: !visible.menu})}>
-                {visible.menu ? <IconClose/> : <IconMenu/>}
+                {visible.menu ? <IconClose className={styles.icon}/> : <IconMenu className={styles.icon}/>}
             </div>
             <Drawer visible={visible.menu} width='100%' footer={null} className={styles.navigation}
                     closable={false}

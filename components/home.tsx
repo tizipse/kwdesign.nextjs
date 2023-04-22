@@ -62,7 +62,7 @@ const Home = (props: APIHome.Props) => {
                         <img src={props.category?.picture} alt={props.setting?.company_zh}/>
                     </div>
                 }
-                <Header theme={theme} picture={props.picture} setting={props.setting}/>
+                <Header theme={theme} picture={props.picture} opacity setting={props.setting}/>
                 <div className={styles.banners}>
                     <Carousel autoPlay={{interval: 5000, hoverToPause: false}} showArrow='never'
                               moveSpeed={1000}

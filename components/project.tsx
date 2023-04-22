@@ -89,7 +89,11 @@ const Project = (props: APIProjects.Project) => {
 
     useEffect(() => {
         window.addEventListener('scroll', onScroll)
-        return () => window.removeEventListener('scroll', onScroll)
+        window.addEventListener('resize', onScroll)
+        return () => {
+            window.removeEventListener('resize', onScroll)
+            window.removeEventListener('scroll', onScroll)
+        }
     }, [])
 
     return (

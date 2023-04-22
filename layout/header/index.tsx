@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
-import {Drawer} from "@arco-design/web-react";
-import {IconClose, IconMenu} from "@arco-design/web-react/icon";
+import {Grid} from "@arco-design/web-react";
 import Link from "next/link";
 
 import styles from "@/styles/header.module.scss";
@@ -30,6 +29,8 @@ const Header = (props: APIHeader.Props) => {
 
     useEffect(() => {
 
+        setVisible({...visible, menu: false})
+
         onResize()
 
         window.onresize = () => {
@@ -39,8 +40,8 @@ const Header = (props: APIHeader.Props) => {
     }, [])
 
     return (
-        <>
-            <header className={styles.header}>
+        <header>
+            <div className={styles.pc}>
                 <div className={styles.head} style={{maxWidth: props.full ? undefined : '1920px'}}>
                     <div className={styles.logo} style={{position: props.logo == 'scroll' ? undefined : 'fixed'}}>
                         <Link href='/'>
@@ -53,7 +54,7 @@ const Header = (props: APIHeader.Props) => {
                             </a>
                         </Link>
                     </div>
-                    <ul className={`${styles.pc} ${props.theme == 'light' ? styles.light : ''}`}>
+                    <ul className={`${styles.nav} ${props.theme == 'light' ? styles.light : ''}`}>
                         <li>
                             <Link href='/projects'>
                                 <a>
@@ -80,16 +81,32 @@ const Header = (props: APIHeader.Props) => {
                         </li>
                     </ul>
                 </div>
-            </header>
-            <div className={`${styles.toggle} ${visible.menu ? styles.action : ''}`}
-                 onClick={() => setVisible({menu: !visible.menu})}>
-                {visible.menu ? <IconClose className={styles.icon}/> : <IconMenu className={styles.icon}/>}
             </div>
-            <Drawer visible={visible.menu} width='100%' footer={null} className={styles.navigation}
-                    closable={false}
-                    onCancel={() => setVisible({...visible, menu: false})}
-                    headerStyle={{display: "none"}} wrapClassName={styles.mobile}>
-                <div className={styles.nav}>
+            <div className={`${styles.mobile} ${visible.menu ? styles.action : styles.close}`}>
+                <Grid.Row className={`${styles.head}`} style={{backgroundColor: props.opacity ? 'none' : 'white'}}>
+                    <Grid.Col flex='auto' className={styles.logo}>
+                        <Link href='/'>
+                            <a>
+                                {
+                                    props.opacity && !visible.menu && props.theme == 'light' ?
+                                        <img src={props.picture?.logo_light} alt={props.setting?.company_zh}/> :
+                                        <img src={props.picture?.logo_dark} alt={props.setting?.company_zh}/>
+                                }
+                            </a>
+                        </Link>
+                    </Grid.Col>
+                    <Grid.Col flex='60px'
+                              className={`${styles.menu} ${props.opacity && !visible.menu && props.theme == 'light' ? styles.light : styles.dark}`}
+                              onClick={() => setVisible({...visible, menu: !visible.menu})}>
+                        <div className={styles.menus}>
+                            <div className={`${styles.item} ${styles.top}`}/>
+                            <div className={`${styles.item} ${styles.center}`}/>
+                            <div className={`${styles.item} ${styles.bottom}`}/>
+                        </div>
+                    </Grid.Col>
+                </Grid.Row>
+
+                <div className={styles.content}>
                     <ul>
                         <li>
                             <Link href='/'><a>HOME</a></Link>
@@ -105,8 +122,8 @@ const Header = (props: APIHeader.Props) => {
                         </li>
                     </ul>
                 </div>
-            </Drawer>
-        </>
+            </div>
+        </header>
     )
 }
 

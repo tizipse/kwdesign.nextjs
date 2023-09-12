@@ -14,7 +14,7 @@
     display: flex;
 
     .logo {
-      height: 22px;
+      height: 13px;
       padding: 31px 0 0 36px;
       z-index: 99;
       flex: 0 0 40px;
@@ -51,7 +51,7 @@
       li {
         display: inline-block;
         line-height: 40px;
-        font-size: 20px;
+        font-size: 12px;
         letter-spacing: 0;
 
         a {
@@ -70,7 +70,7 @@
           }
 
           .alias {
-            font-size: 15px;
+            font-size: 12px;
           }
 
           &:hover {

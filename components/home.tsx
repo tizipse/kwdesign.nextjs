@@ -54,9 +54,9 @@ const Home = (props: APIHome.Props) => {
                          style={{display: display.mark}}>
                         <style jsx>
                             {`
-                              .start_mark::after {
-                                background-color: ${props?.setting?.bg_index || '#000'}
-                              }
+                                .start_mark::after {
+                                    background-color: ${props?.setting?.bg_index || '#000'}
+                                }
                             `}
                         </style>
                         <img src={props.category?.picture} alt={props.setting?.company_zh}/>
@@ -73,13 +73,13 @@ const Home = (props: APIHome.Props) => {
                             props.banners?.filter(item => item.client == client).map(item => (
                                 item.url ?
                                     <a key={item.id} href={item.url} target={`_${item.target}`}>
-                                        <div key={item.id} className={styles.banner} title={item.name}
+                                        <div key={item.id} className={styles.banner}
                                              style={{
                                                  background: `url(${item.picture}) center no-repeat`,
                                                  backgroundSize: 'cover'
                                              }}/>
                                     </a> :
-                                    <div key={item.id} className={styles.banner} title={item.name}
+                                    <div key={item.id} className={styles.banner}
                                          style={{
                                              background: `url(${item.picture}) center no-repeat`,
                                              backgroundSize: 'cover'

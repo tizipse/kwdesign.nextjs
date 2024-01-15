@@ -3,15 +3,14 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import {Grid, Pagination, Result, Spin} from "@arco-design/web-react";
 import dayjs from "dayjs";
-import dynamic from "next/dynamic";
 import {InView} from 'react-intersection-observer';
 import {doProjects} from "@/services/project";
 import Constants from "@/util/Constants";
 
 import styles from '@/styles/projects.module.scss';
 
-const Header = dynamic(() => import('@/layout/header'));
-const Footer = dynamic(() => import('@/layout/footer'));
+import Header from '@/layout/header'
+import Footer from '@/layout/footer'
 
 const Projects = (props: APIProjects.Projects) => {
 

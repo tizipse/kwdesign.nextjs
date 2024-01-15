@@ -1,10 +1,9 @@
 import {useEffect, useState} from "react";
-import dynamic from "next/dynamic";
 import {Carousel} from '@arco-design/web-react';
 
 import styles from '@/styles/home.module.scss';
 
-const Header = dynamic(() => import('@/layout/header'))
+import Header from '@/layout/header'
 
 const Home = (props: APIHome.Props) => {
 

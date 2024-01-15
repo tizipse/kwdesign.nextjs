@@ -1,11 +1,10 @@
 import {useEffect} from "react";
 import {useRouter} from "next/router";
-import dynamic from "next/dynamic";
 
 import styles from '@/styles/contact.module.scss';
 
-const Header = dynamic(() => import('@/layout/header'))
-const Footer = dynamic(() => import('@/layout/footer'))
+import Header from '@/layout/header'
+import Footer from '@/layout/footer'
 
 const Contact = (props: APIContact.Props) => {
 

@@ -1,13 +1,12 @@
 import dayjs from "dayjs";
 import {Grid} from "@arco-design/web-react";
 import {useEffect} from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import styles from '@/styles/project.module.scss'
 
-const Header = dynamic(() => import('@/layout/header'))
-const Footer = dynamic(() => import('@/layout/footer'))
+import Header from '@/layout/header'
+import Footer from '@/layout/footer'
 
 const Project = (props: APIProjects.Project) => {
 

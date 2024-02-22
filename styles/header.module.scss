@@ -156,17 +156,17 @@
           animation-timing-function: cubic-bezier(.215, .61, .355, 1);
 
           &.top {
-            top: -5px;
+            top: -8px;
             transform: translateY(0);
           }
 
           &.center {
-            width: 18px;
+            //width: 18px;
             animation-delay: .1s;
           }
 
           &.bottom {
-            top: 5px;
+            top: 8px;
           }
         }
       }
@@ -255,16 +255,16 @@
     transform: translateY(0) rotate(0);
   }
   50% {
-    transform: translateY(5px) rotate(0);
+    transform: translateY(8px) rotate(0);
   }
   100% {
-    transform: translateY(5px) rotate(-45deg);
+    transform: translateY(8px) rotate(-45deg);
   }
 }
 
 @keyframes menu-center-in {
   0% {
-    width: 18px;
+    width: 23px;
   }
   50% {
     width: 0;
@@ -279,19 +279,19 @@
     transform: translateY(0) rotate(0);
   }
   50% {
-    transform: translateY(-5px) rotate(0);
+    transform: translateY(-8px) rotate(0);
   }
   100% {
-    transform: translateY(-5px) rotate(45deg);
+    transform: translateY(-8px) rotate(45deg);
   }
 }
 
 @keyframes menu-top-out {
   0% {
-    transform: translateY(5px) rotate(-45deg);
+    transform: translateY(8px) rotate(-45deg);
   }
   50% {
-    transform: translateY(5px) rotate(0);
+    transform: translateY(8px) rotate(0);
   }
   100% {
     transform: translateY(0) rotate(0);
@@ -303,19 +303,19 @@
     width: 0;
   }
   50% {
-    width: 18px;
+    width: 23px;
   }
   100% {
-    width: 18px;
+    width: 23px;
   }
 }
 
 @keyframes menu-bottom-out {
   0% {
-    transform: translateY(-5px) rotate(45deg);
+    transform: translateY(-8px) rotate(45deg);
   }
   50% {
-    transform: translateY(-5px) rotate(0);
+    transform: translateY(-8px) rotate(0);
   }
   100% {
     transform: translateY(0) rotate(0);
